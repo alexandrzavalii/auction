@@ -1,2 +1,160 @@
-$brand-primary: brown;
+
 @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+
+body {
+  margin: 0;
+  
+  color: white;
+  background-color: black;
+  
+  font-family: 'Raleway', sans-serif;
+}
+
+a {
+	text-decoration: none;
+  transition: 0.5s;
+}
+
+a:visited {
+  text-decoration: none;
+}
+
+video { 
+	display: block; 
+}
+
+#video {
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	
+	min-width: 100%;
+	min-height: 100%;
+	width: auto;
+	height: auto;
+	
+	z-index: -100;
+	-ms-transform: translateX(-50%) translateY(-50%);
+	-moz-transform: translateX(-50%) translateY(-50%);
+	-webkit-transform: translateX(-50%) translateY(-50%);
+	transform: translateX(-50%) translateY(-50%);
+	
+	background: black;
+	background-size: cover; 
+}
+
+/* --------banner-------- */
+
+#banner_outer {
+  margin-top: 100px;
+	margin-bottom: 10px;
+}
+
+#banner_inner {
+	display: table;
+	margin: 0 auto;
+}
+
+#banner_text {
+	padding: 50px;
+	
+	text-transform: uppercase;
+	font-size: 80px;
+	font-weight: 400;
+	text-align: center;
+	
+	border: 2px solid rgba(255, 255, 255, 0.76);
+	
+	color: white;
+	background-color: rgba(255, 255, 255, 0.17);
+	text-shadow: 0 0 20px black;
+}
+
+/* --------Sign-------- */
+
+table#sign_inner {
+	margin: 0 auto;
+	
+	border-collapse: separate;
+	border-spacing: 0px;
+}
+
+td {
+	height: 100%;
+  border: 2px solid transparent;
+  
+  transition: 0.2s;
+}
+ 
+td:hover {
+	border: 2px solid rgba(255, 255, 255, 0.65);
+	
+	transition: 0.2s;
+	background-color: rgba(0, 0, 0, 0.19);
+  text-shadow: 0px 0px 10px white;
+}
+
+td a {
+	display: block;
+	padding: 30px;
+
+	font-size: 30px;
+	
+	text-transform: uppercase;
+	color: white;
+}
+
+#log_in_box {
+	border-right: 1px solid white;
+}
+
+#sign_up_box {
+	border-left: 1px solid white;
+}
+
+/* --------footer-------- */
+
+footer {
+	background-color: rgba(0, 0, 0, 0.47);
+}
+
+footer {
+	position: fixed;
+  text-align: center;
+	
+	bottom: 0px;
+	width: 100%;
+}
+
+nav {
+	padding: 10px;
+}
+
+nav > ul {
+  margin: 0;
+  padding: 0;
+  
+  list-style-type: none;
+}
+
+nav > ul > li {
+  margin: 0;
+  display: inline-block;
+  text-transform: uppercase;
+	width: 19%;
+}
+
+nav > ul > li > a {
+  display: inline-block;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	
+	font-size: 13px;
+	color: antiquewhite;
+}
+
+nav > ul > li > a:hover {
+	text-shadow: 0 0 10px white;
+	text-decoration: underline;
+	transition: 0.15s;
+}

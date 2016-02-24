@@ -23,13 +23,15 @@ class ContactController extends Controller
              'user_message' => $request->get('message'),
          ];
         
-    \Mail::send('emails.contact', $data, function($message)
+  \Mail::send('emails.contact', $data, function($message)
      {
          $message->from(env('MAIL_FROM'));
-         $message->to('admin@gmail.com', 'alexandr');
-         $message->subject('This is the subject');
+         $message->to('spaceauction@gmail.com', 'admin');
+         $message->subject('Auction Inquiry');
+         
      });
  
+                
      return \Redirect::route('contact')->with('message', 'Thanks for contacting us!');
  }
 }

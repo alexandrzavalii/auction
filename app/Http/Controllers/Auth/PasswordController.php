@@ -17,7 +17,7 @@ class PasswordController extends Controller
     | explore this trait and override any methods you wish to tweak.
     |
     */
-
+     protected $redirectTo = '/products';
     use ResetsPasswords;
 
     /**
@@ -27,6 +27,7 @@ class PasswordController extends Controller
      */
     public function __construct()
     {
+        $this->subject = 'Reset your password';
         $this->middleware('guest');
     }
 }

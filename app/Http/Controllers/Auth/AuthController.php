@@ -15,7 +15,7 @@ class AuthController extends Controller
     use AuthenticatesAndRegistersUsers, ThrottlesLogins;
 
 
-    protected $redirectTo = '/store';
+    protected $redirectTo = '/products';
 
 
     public function __construct()
