@@ -4,11 +4,11 @@
   use App\Http\Controllers\Controller;
   use App\Product;
   use App\Bids;
-use File;
+  use File;
   use Illuminate\Http\Request;
-use App\Http\Requests\ProductCreateRequest;
-use App\Http\Requests\BidCreateRequest;
-use Illuminate\Support\Facades\Auth;
+  use App\Http\Requests\ProductCreateRequest;
+  use App\Http\Requests\BidCreateRequest;
+  use Illuminate\Support\Facades\Auth;
 
   class ProductController extends Controller {
 
@@ -136,7 +136,8 @@ public function store(ProductCreateRequest $request)
           }else{
 
           }
-          
+
+
           $user = Auth::user();
 
           $product->bid->update([
