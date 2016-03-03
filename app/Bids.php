@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Bids extends Model
 {
-        
+        protected $table = 'bids';
 
      protected $fillable = ['product_id', 'amount','expiration','user_id'];
 
