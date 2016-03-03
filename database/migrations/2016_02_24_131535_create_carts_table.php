@@ -13,7 +13,7 @@ class CreateCartsTable extends Migration
     public function up()
     {
         Schema::create('cart', function (Blueprint $table) {
-        
+
       $table->increments('id');
       $table->integer('user_id');
       $table->integer('order_id')->nullable();
@@ -32,6 +32,7 @@ class CreateCartsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('carts');
+        Schema::drop('cart');
+        
     }
 }
