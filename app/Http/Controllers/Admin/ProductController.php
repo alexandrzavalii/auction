@@ -3,10 +3,14 @@
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use File;
+use DateTime;
 use App\Product;
+use App\Bids;
 use App\Http\Requests\ProductCreateRequest;
+use App\Http\Requests\BidCreateRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Auth;
 
 class ProductController extends Controller {
 
@@ -19,7 +23,8 @@ class ProductController extends Controller {
 	public function index()
 	{
 		$products = Product::all();
-		return view('admin.products.index', compact('products'));
+        $bids = Bids::all();
+		return view('admin.products.index', compact('products','bids'));
 	}
 
 	/**
@@ -45,7 +50,8 @@ class ProductController extends Controller {
 	      'sku'         => $request->get('sku'),
 	      'price'       => $request->get('price'),
 	      'description' => $request->get('description'),
-	      'is_downloadable' => $request->get('is_downloadable')
+	      'is_downloadable' => $request->get('is_downloadable'),
+            'authorId' => Auth::user()->id
 	    ));
 
 	    $product->save();
@@ -83,23 +89,6 @@ class ProductController extends Controller {
 	{
 		//
 	}
-    
-     public function search()
-        {
-            if (Input::has('query')) {
-                 $query = Input::get('query');
-
-             $results = Model::whereRaw("MATCH(name,content) AGAINST(? IN BOOLEAN MODE)", array($query))->remember(1440)->orderBy('id','ASC')->get();
-
-             if ($results->count() > 0) {
-                 return View::make('search.main')->with('results',$results)->with('query', $query)->with('title', 'Search Result for '.$query);
-             } else {
-                 return '<h3>Sorry, No results for ' . $query . ' </h3>';
-             }
-         }
-
-         return Redirect::to('/');
-     }
 	/**
 	 * Show the form for editing the specified resource.
 	 *
@@ -160,5 +149,39 @@ class ProductController extends Controller {
         return \Redirect::route('admin.products.index')
             ->with('message', 'Product deleted!');
 	}
+    
+    public function createBid($id)
+	{
+        $product = Product::findOrFail($id);
+        		$bids = Bids::all();
+            return view('admin.products.createBid', compact('product'));
+
+	}
+    public function storeBid(BidCreateRequest $request)
+    {
+        
+        $date=$request->get('expirationDate');
+        $time=$request->get('expirationTime');
+        $timestamp = strtotime($date.$time.':01');
+        $storedate=date("Y-m-d H:i:s", $timestamp);
+        
+      $bids = new Bids(array(
+	      'user_id' => 0,
+	      'product_id' => $request->get('product_id'),
+	      'expiration' => $storedate,
+          'amount' => $request->get('amount')
+	    ));
+        $bids->save();
+        return \Redirect::route('admin.products.index')
+            ->with('message', 'Bid created!');
+        
+    }
+    public function deleteBid($id)
+    {
+        $bid = Bids::where('product_id', '=', $id);
+        $bid->delete();
+        return \Redirect::route('admin.products.index')
+            ->with('message', 'Bid deleted!');
+    }
 
 }

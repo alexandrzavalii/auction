@@ -11,7 +11,7 @@
 <script
 src="https://checkout.stripe.com/checkout.js" class="stripe-button"
 data-key="{{env('STRIPE_API_PUBLIC')}}"
-data-name="WeDewLawns.com"
+data-name="SuperAuction.com"
 data-billingAddress=true
 data-shippingAddress=true
 data-label="Buy ${{ $product->price }}"

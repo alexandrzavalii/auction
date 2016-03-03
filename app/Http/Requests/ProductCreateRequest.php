@@ -30,7 +30,7 @@ class ProductCreateRequest extends Request {
           'image'       => 'required|mimes:png',
           'description' => 'required',
           'price'       => 'required|numeric',
-          'is_downloadable' => 'boolean'
+          'is_downloadable' => 'boolean',
         ];
 	}
 

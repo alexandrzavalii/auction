@@ -1,51 +1,26 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Routes File
-|--------------------------------------------------------------------------
-|
-| Here is where you will register all of the routes in an application.
-| It's a breeze. Simply tell Laravel the URIs it should respond to
-| and give it the controller to call when that URI is requested.
-|
-*/
-
-/*
-|--------------------------------------------------------------------------
-| Application Routes
-|--------------------------------------------------------------------------
-|
-| This route group applies the "web" middleware group to every route
-| it contains. The "web" middleware group is defined in your HTTP
-| kernel and includes session state, CSRF protection, and more.
-|
-*/
-
 Route::group(['middleware' => ['web']], function () {
+    
 
 Route::get('/', ['as' => 'contact', 'uses' => 'WelcomeController@create']);
 
 Route::resource('about', 'AboutController',['only' =>['index']]);
 Route::get('contact', ['as' => 'contact', 'uses' => 'ContactController@create']);
 Route::post('contact', ['as' => 'contact_store', 'uses' => 'ContactController@store']);
-Route::get('login', ['as' => 'login', 'uses' => 'Auth\AuthController@getLogin']);
-Route::get('logout', ['as' => 'logout', 'uses' => 'Auth\AuthController@getLogout']);
     
 Route::get('password/email', 'Auth\PasswordController@getEmail');
-Route::post('password/email', 'Auth\PasswordController@postEmail');
-    
+Route::post('password/email', 'Auth\PasswordController@postEmail');   
 Route::get('password/reset/{token}', 'Auth\PasswordController@getReset');
 Route::post('password/reset', 'Auth\PasswordController@postReset');
-   
+View::composer('inc.nav', 'App\Composers\NavComposer');
+Route::post('products/bid/{id}', ['as' => 'products.bid', 'uses' => 'ProductController@bid']);
+ Route::post('products/storeBid', ['as' => 'products.storeBid', 'uses' => 'ProductController@storeBid']);
 Route::resource('products', 'ProductController');
 Route::post('cart/store', 'CartController@store');
 Route::get('cart', 'CartController@index');
 Route::get('cart/remove/{id}', 'CartController@remove');
-Route::post('cart/complete', [
- 	    'as' => 'cart.complete',
- 	    'uses' => 'CartController@complete'
- 	]);
+Route::post('cart/complete', ['as' => 'cart.complete','uses' => 'CartController@complete']);
 
 Route::controllers(['auth' => 'Auth\AuthController','password' => 'Auth\PasswordController']);
 
@@ -55,17 +30,17 @@ Route::group(['prefix' => 'admin',
               'middleware' => 'admin'], function()
  {
     Route::get('/', 'IndexController@index');
+     Route::get('products/createBid/{id}', ['as' => 'admin.products.createBid', 'uses' => 'ProductController@createBid']);
+     Route::post('products/storeBid', ['as' => 'admin.products.storeBid', 'uses' => 'ProductController@storeBid']);
+     Route::get('products/deleteBid/{id}', ['as' => 'admin.products.deleteBid', 'uses' => 'ProductController@deleteBid']);
     Route::resource('products', 'IndexController');
     Route::resource('orders', 'OrderController');
     Route::resource('products', 'ProductController');
+     
  });
 
-Route::post('checkout', [
-    'uses' => 'CheckoutController@index'
-]);
-Route::get('checkout/thankyou', [
-    'as' => 'checkout.thankyou', 'uses' => 'CheckoutController@thankyou'
-]);
+Route::post('checkout', ['uses' => 'CheckoutController@index']);
+Route::get('checkout/thankyou', ['as' => 'checkout.thankyou', 'uses' =>'CheckoutController@thankyou']);
 
     
 });

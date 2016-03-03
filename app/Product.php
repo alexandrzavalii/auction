@@ -10,7 +10,7 @@ class Product extends Model
 
     protected $dates = ['deleted_at'];
 
-    protected $fillable = ['name', 'sku', 'price', 'description', 'is_downloadable'];
+    protected $fillable = ['name', 'sku', 'price', 'description', 'is_downloadable','authorId'];
 
 	public function orders()
 	{
@@ -21,4 +21,9 @@ class Product extends Model
     {
     	return $this->price * 100;
     }
+        public function bid()
+     {
+         return $this->hasone('App\bids')
+           ->where('complete', 0);
+     }
 }

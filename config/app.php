@@ -148,6 +148,8 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
 
+        
+
         /*
          * Application Service Providers...
          */
@@ -156,7 +158,8 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
-        'Laravel\Cashier\CashierServiceProvider',
+        Laravel\Cashier\CashierServiceProvider::class,
+        
 
 
     ],

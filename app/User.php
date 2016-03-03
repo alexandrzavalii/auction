@@ -24,6 +24,12 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
          return $this->hasMany('App\Cart')
            ->where('complete', 0);
      }
+    
+     public function bid()
+     {
+         return $this->hasMany('App\Bids')
+           ->where('complete', 0);
+     }
 
 
 }

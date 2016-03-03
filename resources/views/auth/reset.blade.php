@@ -9,7 +9,7 @@
 @endsection
 
 @section('registration')
-	<h1 class="primary">Reset Password</h1>
+	<h1 class="text-center">Reset Password</h1>
 
 	@if (count($errors) > 0)
 		<div class="alert alert-danger">
