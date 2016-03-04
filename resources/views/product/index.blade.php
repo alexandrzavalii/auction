@@ -45,20 +45,7 @@
       @foreach ($products as $product)
 
 <div class="col-md-4 col-sm-6 hero-feature">
-       @if($product->authorId == Auth::user()->id)
-             <div class="row">
-             <div class="col-md-6 col-sm-6 col-xs-6">
-              <a href="#" @if($product->bid) disabled @endif class="btn btn-warning btn-block  " data-product="{{$product}}" data-toggle="modal" data-target="#storeBid"  >Add Bid</a>
-                 </div>
-                 <div class="col-md-6 col-sm-6 col-xs-6">
-               {!! Form::open(array('route' => array('products.destroy', $product->id), 'method' => 'delete')) !!}
-              <button type="submit" class="btn btn-danger btn-block" href="{{ URL::route('products.destroy', $product->id) }}" title="Delete Product">
-              Delete
-              </button>
-            {!! Form::close() !!}
-                 </div>
-               </div>
-          @endif
+
         <div class="thumbnail">
             <img src="/imgs/products/{{ $product->sku }}.png" alt="">
 
@@ -90,18 +77,18 @@
                                    @elseif($product->authorId == Auth::user()->id)
                                    <h4 class="text-warning">This is your bid!</h4>
                                    @else
-                    <script
-                        src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-                        data-key="{{env('STRIPE_API_PUBLIC')}}"
-                        data-name="SuperAuction.com"
-                        data-locale="auto"
-                        data-billing-address=true
-                        data-shipping-address=true
-                        data-allow-remember-me=true
-                        data-label="Bid $10"
-                        data-description="{{ $product->name }}"
-                        data-amount="{{ $product->bid->priceToCents()+1000 }}">
-                      </script>
+                                  <script
+                                      src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                                      data-key="{{env('STRIPE_API_PUBLIC', 'pk_test_GOBypCWqHxenhGDfHClBzJXH')}}"
+                                      data-name="SuperAuction.com"
+                                      data-locale="auto"
+                                      data-billing-address=true
+                                      data-shipping-address=true
+                                      data-allow-remember-me=true
+                                      data-label="Bid $10"
+                                      data-description="{{ $product->name }}"
+                                      data-amount="{{ $product->bid->priceToCents()+1000 }}">
+                                    </script>
 
                                    @endif
 
@@ -115,41 +102,62 @@
 
               {{ $product->description }}
             </p>
-               <p>
-                {!! Form::open(array('url' => '/checkout')) !!}
-                    {!! Form::hidden('product_id', $product->id) !!}
+            <div class="row">
+                 @if($product->authorId == Auth::user()->id)
 
-                    <script
-                        src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-                        data-key="{{env('STRIPE_API_PUBLIC','pk_test_GOBypCWqHxenhGDfHClBzJXH')}}"
-                        data-name="SuperAuction.com"
-                        data-locale="auto"
-                        data-billing-address=true
-                        data-shipping-address=true
-                        data-allow-remember-me=true
-                        data-label="Buy ${{ $product->price }}"
-                        data-description="{{ $product->name }}"
-                        data-amount="{{ $product->priceToCents() }}">
-                      </script>
-                    {!! Form::close() !!}
-
-
-                </p>
-
-                 <p>
-
-                            {!! Form::open(['url' => '/cart/store']) !!}
-
-                        <input
-                          type="hidden"
-                          name="product_id"
-                          value="{{ $product->id }}"/>
-                        <button
-                          type="submit"
-                          class="btn btn-default">Add to Cart
+                       <div class="col-md-6 col-sm-6 col-xs-6">
+                        <a href="#" @if($product->bid) disabled @endif class="btn btn-warning btn-block  " data-product="{{$product}}" data-toggle="modal" data-target="#storeBid"  >Add Bid</a>
+                           </div>
+                           <div class="col-md-6 col-sm-6 col-xs-6">
+                         {!! Form::open(array('route' => array('products.destroy', $product->id), 'method' => 'delete')) !!}
+                        <button type="submit" class="btn btn-danger btn-block" href="{{ URL::route('products.destroy', $product->id) }}" title="Delete Product">
+                        Delete
                         </button>
-                        {!! Form::close() !!}
-                </p>
+                      {!! Form::close() !!}
+                           </div>
+
+                       @else
+
+                         {!! Form::open(array('url' => '/checkout', 'class'=> 'col-md-6 col-sm-6 col-xs-6')) !!}
+                             {!! Form::hidden('product_id', $product->id) !!}
+
+                             <script
+                                 src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                                 data-key="{{env('STRIPE_API_PUBLIC','pk_test_GOBypCWqHxenhGDfHClBzJXH')}}"
+                                 data-name="SuperAuction.com"
+                                 data-locale="auto"
+                                 data-billing-address=true
+                                 data-shipping-address=true
+                                 data-allow-remember-me=true
+                                 data-label="Buy ${{ $product->price }}"
+                                 data-description="{{ $product->name }}"
+                                 data-amount="{{ $product->priceToCents() }}">
+                               </script>
+                             {!! Form::close() !!}
+
+
+
+                                        {!! Form::open(['url' => '/cart/store', 'class'=> 'col-md-6 col-sm-6 col-xs-6']) !!}
+
+                                    <input
+                                      type="hidden"
+                                      name="product_id"
+                                      value="{{ $product->id }}"/>
+                                    <button
+                                      type="submit"
+                                      class="btn btn-default">Add to Cart
+                                    </button>
+                                    {!! Form::close() !!}
+                            </p>
+
+                    @endif
+                    </div>
+
+
+
+
+
+
 
           </div>
 
