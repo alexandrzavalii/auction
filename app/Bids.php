@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Bids extends Model
+class bids extends Model
 {
         protected $table = 'bids';
 
