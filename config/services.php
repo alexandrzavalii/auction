@@ -31,8 +31,8 @@ return [
 
     'stripe' => [
         'model'  => 'User',
-        'key'  => env('STRIPE_API_PUBLIC', 'pk_live_hlUx1jtBMWE5o7qijnqLNc2B'),
-        'secret' => env('STRIPE_API_SECRET', 'sk_live_cItVyATVz1clvFQdiruJCeZV'),
+        'key'  => env('STRIPE_API_PUBLIC', 'pk_test_GOBypCWqHxenhGDfHClBzJXH'),
+        'secret' => env('STRIPE_API_SECRET', 'sk_test_Z98H9hmuZWjFWfbkPFvrJMgk'),
     ],
 
 ];
