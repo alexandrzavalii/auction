@@ -8,7 +8,7 @@ class bids extends Model
 {
         protected $table = 'bids';
 
-     protected $fillable = ['product_id', 'amount','expiration','user_id'];
+     protected $fillable = ['product_id', 'amount','expiration','user_id', 'customerId', 'complete'];
 
 
      public function product()

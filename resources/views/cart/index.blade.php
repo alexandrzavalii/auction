@@ -4,7 +4,7 @@
 
 <div class="container">
    @if (count($cart) == 0)
-        <h1 class="text-center">Your cart is currently empty</h1>
+        <h1 class="text-center">cart is currently empty</h1>
     @else
     <div class="row">
         <div class="col-sm-12 col-md-12">
@@ -74,7 +74,7 @@
                         <td>
                         {!! Form::open(array('action' => 'CartController@complete')) !!}
                     {!! Form::hidden('product_id', $item->product->id) !!}
-                        
+
                               <script
                                 src="https://checkout.stripe.com/checkout.js" class="stripe-button"
                                 data-key="{{env('STRIPE_API_PUBLIC')}}"
@@ -87,9 +87,9 @@
                                 data-description="Description"
                                 data-amount="{{ $total*100 }}">
                               </script>
-                            
+
                         {!! Form::close() !!}
-               
+
                         </td>
                     </tr>
                 </tbody>
@@ -98,7 +98,7 @@
     </div>
     @endif
    @if (count($bids) != 0)
-        <h1 class="text-center">Your Bids: </h1>
+        <h1 class="text-left">winning bids: </h1>
         <div class="row">
         <div class="col-sm-12 col-md-12">
             <table class="table" id="checkout">
@@ -111,6 +111,7 @@
                 </thead>
                 <tbody>
                     @foreach ($bids as $bid)
+                      <tr>
                                        <td class="col-sm-6 col-md-6" style="text-align: center">
                         <div class="media">
                             <a class="thumbnail pull-left" href="#"> <img class="media-object" src="/imgs/products/{{ $bid->product->sku }}.png" style="width: 72px; height: 72px;"> </a>
@@ -118,25 +119,20 @@
                                 <h4 class="media-heading"><a href="#">{{ $bid->product->name }}</a></h4>
                                 <span>Status: </span><span class="text-success"><strong>In Stock</strong></span>
                             </div>
-                        </div></td>
+                        </div>
+                      </td>
                     <td class="col-sm-3 col-md-3 text-center"><strong>${{ $bid->amount }}</strong></td>
-                                         <td class="col-sm-3 col-md-3 text-center"><strong>{{ $bid->expiration }}</strong></td>               
+                                         <td class="col-sm-3 col-md-3 text-center"><strong>{{ $bid->expiration }}</strong></td>
+                        </tr>
                     @endforeach
-
-
-
-
-                    
                 </tbody>
             </table>
         </div>
     </div>
-    
+
     @endif
-    
+
 </div>
 
-    
+
 @endsection
-
-

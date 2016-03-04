@@ -5,6 +5,7 @@
   use App\Product;
   use App\Bids;
   use File;
+  use Carbon;
   use Illuminate\Http\Request;
   use App\Http\Requests\ProductCreateRequest;
   use App\Http\Requests\BidCreateRequest;
@@ -25,10 +26,25 @@
             ]);
              $search = $request->get('query');
              $products = Product::orderBy('name', 'asc')->where('name', 'LIKE', '%' . $search . '%')->get();
-
             return view('product.index', compact('products'));
          }
 		$products = Product::orderBy('name', 'asc')->get();
+              foreach ($products as $product) {
+                if($product->bid){
+                if(strtotime($product->bid->expiration)-strtotime(Carbon\Carbon::now())<0){
+                  if($product->bid->customerId){
+                    \Stripe\Stripe::setApiKey("sk_test_Z98H9hmuZWjFWfbkPFvrJMgk");
+                  \Stripe\Charge::create(array(
+                    "amount" => $product->bid->priceToCents(), // amount in cents, again
+                    "currency" => "usd",
+                    "customer" => $product->bid->customerId
+                    ));
+                    }
+                  $product->bid->delete();
+
+                }
+              }
+              }
 		return view('product.index', compact('products'));
 	}
 
@@ -114,7 +130,7 @@ public function store(ProductCreateRequest $request)
       public function bid($id)
       {
           //create the customer
-          \Stripe\Stripe::setApiKey("sk_test_Z98H9hmuZWjFWfbkPFvrJMgk");
+\Stripe\Stripe::setApiKey("sk_test_Z98H9hmuZWjFWfbkPFvrJMgk");
             $token = $_POST['stripeToken'];
             $customer = \Stripe\Customer::create(array(
               "source" => $token,
@@ -123,37 +139,23 @@ public function store(ProductCreateRequest $request)
 
 
           //check the bid
-		 $product = Product::findOrFail($id);
-
-         $bidUp=$product->bid->priceToCents() + 1000;
+		     $product = Product::findOrFail($id);
+         $bidUpCents=$product->bid->priceToCents() + 1000;
           $bidUpdate=$product->bid->amount+10;
-
-          if($bidUpdate>$product->price){
-              $product->bid->delete();
-            \Stripe\Charge::create(array(
-              "amount" => $bidUp, // amount in cents, again
-              "currency" => "usd",
-              "customer" => $customer->id)
-            );
-
-           return \Redirect::route('checkout.thankyou')
-		    	->with('message', 'Thank you for your order.');
-
-          }else{
-
-          }
-
-
           $user = Auth::user();
-
+//create customer
           $product->bid->update([
             'amount' => $bidUpdate,
-            'user_id' => $user->id
+            'user_id' => $user->id,
+            'customerId' => $customer->id
         ]);
 
 
 
-          return \Redirect::route('products.index');
+
+
+          return \Redirect::route('products.index')
+          ->with('message', 'Your account will be charged at: '. $product->bid->expiration);
       }
 
  }
