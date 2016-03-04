@@ -79,7 +79,12 @@ public function store(ProductCreateRequest $request)
         $product = Product::findOrFail($id);
         $filename=$product->sku.'.png';
         $product->delete();
+        if($product->bid){
         $product->bid->delete();
+          }
+          if($product->cart){
+            $product->cart->delete();
+          }
  File::delete(base_path() . '/public/imgs/products/'. $filename);
 
 
