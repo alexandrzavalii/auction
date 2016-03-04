@@ -150,7 +150,7 @@ footer {
   bottom: 0px;
   width: 100%; }
   footer ul {
-    height: auto; }
+    height: 2em; }
   footer .glyphicon {
     display: none;
     color: rgba(152, 152, 152, 0.84);
