@@ -121,7 +121,7 @@
 
                     <script
                         src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-                        data-key="{{env('STRIPE_API_PUBLIC')}}"
+                        data-key="{{env('STRIPE_API_PUBLIC','sk_test_Z98H9hmuZWjFWfbkPFvrJMgk')}}"
                         data-name="SuperAuction.com"
                         data-locale="auto"
                         data-billing-address=true
