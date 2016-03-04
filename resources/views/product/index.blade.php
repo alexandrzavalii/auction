@@ -9,7 +9,7 @@
             </div>
         </div>
   <div class="row">
-    <div class="col-md-9 col-xs-9 col-sm-9">
+    <div class="col-md-9 col-xs-6 col-sm-9">
       <form class="search form-inline" action="/products" method="get">
         <div class="form-group">
           <label for="query"></label>

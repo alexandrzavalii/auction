@@ -15,7 +15,7 @@
       	 </a>
            @else
             <div id="cart">
-            <span class="empty">No items in cart.</span>
+            <span class="empty">cart is empty.</span>
             </div>
           @endif
       </li>
