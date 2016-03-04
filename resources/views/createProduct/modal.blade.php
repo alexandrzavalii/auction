@@ -12,22 +12,18 @@
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
           <div class="form-group">
-              {!! Form::label('name', 'Product Name') !!}
                 {!! Form::text('name', null, array('required', 'class'=>'form-control', 'placeholder'=>'Product Name')) !!}
          </div>
 
             <div class="form-group">
-              {!! Form::label('sku', 'Product SKU') !!}
-                {!! Form::text('sku', null, array('required', 'class'=>'form-control', 'placeholder'=>'LAWN-1234')) !!}
+                {!! Form::text('sku', null, array('required', 'class'=>'form-control', 'placeholder'=>'Product SKU')) !!}
             </div>
 
             <div class="form-group">
-              {!! Form::label('image', 'Product Image') !!}
                   {!! Form::file('image', null, array('required', 'class'=>'form-control')) !!}
             </div>
 
             <div class="form-group">
-              {!! Form::label('price', 'Price') !!}
               <div class="input-group">
                <span class="input-group-addon">$</span>
     	             {!! Form::text('price', null, array('required', 'class'=>'form-control', 'placeholder'=>'9.99')) !!}
@@ -36,7 +32,6 @@
             </div>
 
             <div class="form-group">
-              {!! Form::label('description', 'Product Description') !!}
               {!! Form::textarea('description', null, array('class'=>'form-control', 'placeholder'=>'Enter a short description')) !!}
              </div>
 

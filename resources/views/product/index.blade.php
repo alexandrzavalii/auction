@@ -22,7 +22,6 @@
      <div class="col-md-3 col-sm-3 col-xs-3">
         <a href="#" class="btn btn-default btn-block" data-toggle="modal" data-target="#createProduct"  >Add Product</a>
         </div>
-
   </div>
 <hr>
 

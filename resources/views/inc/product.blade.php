@@ -1,4 +1,4 @@
-<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 hero-feature">
+<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12  hero-feature">
 
         <div class="thumbnail">
             <img src="/imgs/products/{{ $product->sku }}.png" alt="">
@@ -48,10 +48,7 @@
 						</div>
                   {!! Form::close() !!}
             <br>
-
-
              @endif
-
               {{ $product->description }}
             </p>
             <div class="btn-group btn-group-justified" role="group" aria-label="group button">
