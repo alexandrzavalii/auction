@@ -54,56 +54,52 @@
 
               {{ $product->description }}
             </p>
-
-            <div class="row">
-                 @if($product->authorId == Auth::user()->id)
-
-                       <div class="col-md-6 col-sm-6 col-xs-6">
+            <div class="btn-group btn-group-justified" role="group" aria-label="group button">
+              @if($product->authorId == Auth::user()->id)
+                    <div class="btn-group" role="group">
                         <a href="#" @if($product->bid) disabled @endif class="btn btn-warning btn-block  " data-product="{{$product}}" data-toggle="modal" data-target="#storeBid"  >Add Bid</a>
-                           </div>
-                           <div class="col-md-6 col-sm-6 col-xs-6">
-                         {!! Form::open(array('route' => array('products.destroy', $product->id), 'method' => 'delete')) !!}
-                        <button type="submit" class="btn btn-danger btn-block" href="{{ URL::route('products.destroy', $product->id) }}" title="Delete Product">
-                        Delete
-                        </button>
-                      {!! Form::close() !!}
-                           </div>
+                    </div>
+                    <div class="btn-group" role="group">
+                          {!! Form::open(array('route' => array('products.destroy', $product->id), 'method' => 'delete')) !!}
+                         <button type="submit" class="btn btn-default btn-block" href="{{ URL::route('products.destroy', $product->id) }}" title="Delete Product">
+                         Delete
+                         </button>
+                       {!! Form::close() !!}
+                    </div>
+                @else
+                    <div class="btn-group" role="group">
+                      {!! Form::open(array('url' => '/checkout')) !!}
+                          {!! Form::hidden('product_id', $product->id) !!}
 
-                       @else
+                          <script
+                              src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                              data-key="{{env('STRIPE_API_PUBLIC','pk_test_GOBypCWqHxenhGDfHClBzJXH')}}"
+                              data-name="SuperAuction.com"
+                              data-locale="auto"
+                              data-billing-address=true
+                              data-shipping-address=true
+                              data-allow-remember-me=true
+                              data-label="Buy ${{ $product->price }}"
+                              data-description="{{ $product->name }}"
+                              data-amount="{{ $product->priceToCents() }}">
+                            </script>
+                          {!! Form::close() !!}
+                    </div>
+                    <div class="btn-group" role="group">
+                              {!! Form::open(['url' => '/cart/store']) !!}
 
-                         {!! Form::open(array('url' => '/checkout', 'class'=> 'col-md-6 col-sm-6 col-xs-6')) !!}
-                             {!! Form::hidden('product_id', $product->id) !!}
-
-                             <script
-                                 src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-                                 data-key="{{env('STRIPE_API_PUBLIC','pk_test_GOBypCWqHxenhGDfHClBzJXH')}}"
-                                 data-name="SuperAuction.com"
-                                 data-locale="auto"
-                                 data-billing-address=true
-                                 data-shipping-address=true
-                                 data-allow-remember-me=true
-                                 data-label="Buy ${{ $product->price }}"
-                                 data-description="{{ $product->name }}"
-                                 data-amount="{{ $product->priceToCents() }}">
-                               </script>
-                             {!! Form::close() !!}
-
-
-
-                                        {!! Form::open(['url' => '/cart/store', 'class'=> 'col-md-6 col-sm-6 col-xs-6']) !!}
-
-                                    <input
-                                      type="hidden"
-                                      name="product_id"
-                                      value="{{ $product->id }}"/>
-                                    <button
-                                      type="submit"
-                                      class="btn btn-default">Add to Cart
-                                    </button>
-                                    {!! Form::close() !!}
-                            </p>
-                    @endif
-                  </div>
+                          <input
+                            type="hidden"
+                            name="product_id"
+                            value="{{ $product->id }}"/>
+                          <button
+                            type="submit"
+                            class="btn btn-default">Add to Cart
+                          </button>
+                          {!! Form::close() !!}
+                            </div>
+                  @endif
+                </div>
           </div>
         </div>
       </div>
