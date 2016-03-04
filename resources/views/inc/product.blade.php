@@ -1,4 +1,4 @@
-<div class=" col-lg-3 col-md-4 col-sm-6 col-xs-12  hero-feature">
+<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12  hero-feature">
 
         <div class="thumbnail">
             <img src="/imgs/products/{{ $product->sku }}.png" alt="">
@@ -11,7 +11,10 @@
 
 
                 	<div class="row">
+                    <div class="col-md-12 col-xs-12">
                                 <h4><div data-countdown="{{strtotime($product->bid->expiration)}}"></div></h4>
+                    </div>
+
 						</div>
 
                {!! Form::open(array('route' => array('products.bid', $product->id), 'id'=>'createBid', 'class' => 'form', 'novalidate' => 'novalidate')) !!}
@@ -99,12 +102,8 @@
                                     </button>
                                     {!! Form::close() !!}
                             </p>
-
                     @endif
-                    </div>
+                  </div>
           </div>
-
         </div>
-
-
       </div>

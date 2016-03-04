@@ -39,14 +39,14 @@
    <div class="alert alert-success">{{ Session::get('message') }}</div>
 @endif
 
-  <div class="row text-center">
+  <div class="row auto-clear ">
 
     @if (count($products) > 0)
 
       @foreach ($products as $product)
           @include('inc.product', array('product'=>$product))
       @endforeach
-      
+
 
     @else
       <div class="nothing col-sm-3">
