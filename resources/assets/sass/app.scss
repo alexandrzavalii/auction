@@ -181,8 +181,12 @@ footer {
     bottom: 0px;
     width: 100%;
     ul {
-        height: 2em;
+        height: auto;
     }
+    ol, ul {
+    margin-top: 0;
+    margin-bottom: 0px;
+}
 .glyphicon{
     display: none;
     color: rgba(152, 152, 152, 0.84);
