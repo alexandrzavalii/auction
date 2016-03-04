@@ -1,4 +1,4 @@
-<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12  hero-feature">
+<div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 hero-feature">
 
         <div class="thumbnail">
             <img src="/imgs/products/{{ $product->sku }}.png" alt="">

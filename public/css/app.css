@@ -159,30 +159,28 @@ footer {
       color: white;
       cursor: pointer; }
 
-nav {
-  padding: 10px; }
-  nav li {
-    margin: 0;
+nav li {
+  margin: 0;
+  display: inline-block;
+  text-transform: uppercase;
+  width: 15%; }
+  nav li:hover {
+    text-decoration: none !important; }
+  nav li a {
     display: inline-block;
-    text-transform: uppercase;
-    width: 15%; }
-    nav li:hover {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-size: 13px;
+    color: antiquewhite; }
+    nav li a:link {
       text-decoration: none !important; }
-    nav li a {
-      display: inline-block;
-      padding-top: 10px;
-      padding-bottom: 10px;
-      font-size: 13px;
-      color: antiquewhite; }
-      nav li a:link {
-        text-decoration: none !important; }
-      nav li a:hover {
-        color: inherit !important;
-        text-shadow: 0 0 10px white !important; }
-    nav li:hover {
-      text-shadow: 0 0 10px white;
-      text-decoration: underline;
-      transition: 0.15s; }
+    nav li a:hover {
+      color: inherit !important;
+      text-shadow: 0 0 10px white !important; }
+  nav li:hover {
+    text-shadow: 0 0 10px white;
+    text-decoration: underline;
+    transition: 0.15s; }
 
 /* --------Helper classes-------- */
 .darken {
@@ -336,6 +334,8 @@ dir {
     text-align: center;
     margin: 0 auto !important;
     width: 100% !important; }
+  footer li.welcome {
+    display: none !important; }
   footer a {
     font-size: 30px !important; } }
 

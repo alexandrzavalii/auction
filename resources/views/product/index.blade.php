@@ -57,9 +57,10 @@
     @endif
   </div>
 
+<hr>
 </div>
 @endsection
-@@section('counterjs')
+@section('counterjs')
   <script>
 
   $('#storeBid').on('show.bs.modal', function (event) {

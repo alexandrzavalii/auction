@@ -1,12 +1,12 @@
 
 <nav>
   <span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span>
-  <ul> 
+  <ul>
     @if (Auth::guest())
       <li><a href="/"><h4>Home</h4></a></li>
     @else
-     
-      <li> Welcome, {{ Auth::user()->name }}</li>
+
+      <li class="welcome"> Welcome, {{ Auth::user()->name }}</li>
       	<li>
              @if($count!=0)
       	    <a href="/cart">
@@ -19,11 +19,11 @@
             </div>
           @endif
       </li>
-      <li><a href="/products"><h4>Store</h4></a></li>
-      <li><a href="/auth/logout"><h4>Logout</h4></a></li>
+      <li><a href="/products"><h5>Store</h5></a></li>
+      <li><a href="/auth/logout"><h5>Logout</h5></a></li>
     @endif
-    <li><a href="/about"><h4>About</h4></a></li>
-    <li><a href="/contact"><h4>Contact</h4></a></li>
+    <li><a href="/about"><h5>About</h5></a></li>
+    <li><a href="/contact"><h5>Contact</h5></a></li>
   </ul>
 </nav>
 
