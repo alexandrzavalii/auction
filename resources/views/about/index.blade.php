@@ -64,17 +64,9 @@
           the mineral world and has gained quite a following.</p>
         </div>
 
-        <hr class="featurette-divider">
-
-        <!-- Footer -->
-        <footer>
-            <div class="row">
-                <div class="col-lg-12">
-                    <p>Copyright &copy; Your Website 2014</p>
-                </div>
-            </div>
-        </footer>
 
     </div>
+@include('inc.footer')
     <!-- /.container -->
+
 @endsection

@@ -38,9 +38,7 @@
       </div>
     @endif
   </div>
-
-
-<hr>
+@include('inc.footer')
 </div>
 @endsection
 @section('counterjs')

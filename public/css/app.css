@@ -228,6 +228,7 @@ nav li {
 
 /*---------CONTACT -------*/
 /* --------product page-------- */
+/*--------inc header ------*/
 #header {
   height: 120px; }
 
@@ -395,6 +396,39 @@ input.search-form:hover {
   border-top: 0;
   padding-bottom: 0; }
 
+/*----------Footer-----*/
+#bottom {
+  background: black;
+  border-top: 1px solid #222;
+  border-bottom: 5px solid #c52d2f;
+  font-size: 14px; }
+
+#bottom h3 {
+  padding-top: 20px;
+  margin-top: 0;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  font-size: 22px; }
+
+#bottom ul {
+  list-style: none;
+  padding: 0;
+  margin: 0; }
+
+#bottom ul li {
+  display: block;
+  padding: 5px 0; }
+
+#bottom ul li a {
+  color: #808080; }
+
+#bottom ul li a:hover {
+  color: #c52d2f; }
+
+#bottom .widget {
+  margin-bottom: 0; }
+
+/*------thumbnail-----*/
 .thumbnail {
   border-radius: 0;
   padding: 7px;
