@@ -74,7 +74,6 @@
             {!! Form::hidden('product_id', 'product_id') !!}
             {!! Form::hidden('max', 'sad') !!}
             {!! Form::hidden('userTimezone', Auth::user()->timezone) !!}
-            <h1>userTimezone: @if(Auth::user()->timezone)Exists @endif </h1>
            <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
 <div class="form-group">

@@ -110,11 +110,11 @@ public function store(ProductCreateRequest $request)
 
           public function storeBid(BidCreateRequest $request)
     {
-      $userTimezone = Auth::user()->timezone;
 
         $date=$request->get('expirationDate');
         $time=$request->get('expirationTime');
         $timestamp = strtotime($date.$time.':01');
+
         $storedate=date("Y-m-d H:i:s", $timestamp);
 
       $bids = new Bids(array(

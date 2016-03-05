@@ -23,6 +23,7 @@ class BidCreateRequest extends Request {
 	public function rules()
 	{
         $price = $this->input('max');
+      
         return [
           'expirationDate'        => "required|after:". \Carbon\Carbon::now()->subDay(),
         'expirationTime'        => 'required|date_format:H:i|after:'.\Carbon\Carbon::now()->toTimeString(),
