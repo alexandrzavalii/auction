@@ -32,8 +32,10 @@
             </div>
 
             <div class="form-group">
-              {!! Form::textarea('description', null, array('class'=>'form-control', 'placeholder'=>'Enter a short description')) !!}
+              {!! Form::textarea('description', null, array('class'=>'form-control', 'id'=>"message", 'maxlength'=>"233", 'rows'=>"7", 'placeholder'=>'Enter a short description')) !!}
+              <span class="help-block"><p id="characterLeft" class="help-block ">You have reached the limit</p></span>
              </div>
+            
 
           </div><!-- .modal-body -->
 
@@ -46,7 +48,7 @@
                       <button type="button" id="delImage" class="btn btn-default btn-hover-red" data-dismiss="modal"  role="button">Delete</button>
                     </div>
                     <div class="btn-group" role="group">
-                      {!! Form::submit('Create Product!', array('class'=>'btn btn-primary')) !!}
+                      {!! Form::submit('Create Product!', array('class'=>'btn btn-success')) !!}
                     </div>
                 </div>
           </div>

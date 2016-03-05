@@ -222,6 +222,11 @@ nav li {
 .featurette-heading {
   font-size: 50px; }
 
+/*----textarea----*/
+.red {
+  color: #e2782b; }
+
+/*---------CONTACT -------*/
 /* --------product page-------- */
 .thumbnail {
   border-radius: 0;
