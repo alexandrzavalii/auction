@@ -38,8 +38,9 @@
       </div>
     @endif
   </div>
-@include('inc.footer')
+
 </div>
+@include('inc.footer')
 @endsection
 @section('counterjs')
   <script>
