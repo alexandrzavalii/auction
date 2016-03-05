@@ -35,7 +35,7 @@
               {!! Form::textarea('description', null, array('class'=>'form-control', 'id'=>"message", 'maxlength'=>"233", 'rows'=>"7", 'placeholder'=>'Enter a short description')) !!}
               <span class="help-block"><p id="characterLeft" class="help-block ">You have reached the limit</p></span>
              </div>
-            
+
 
           </div><!-- .modal-body -->
 
@@ -73,6 +73,8 @@
           <div class="modal-body">
             {!! Form::hidden('product_id', 'product_id') !!}
             {!! Form::hidden('max', 'sad') !!}
+            {!! Form::hidden('userTimezone', Auth::user()->timezone) !!}
+            <h1>userTimezone: @if(Auth::user()->timezone)Exists @endif </h1>
            <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
 <div class="form-group">

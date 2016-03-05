@@ -110,6 +110,7 @@ public function store(ProductCreateRequest $request)
 
           public function storeBid(BidCreateRequest $request)
     {
+      $userTimezone = Auth::user()->timezone;
 
         $date=$request->get('expirationDate');
         $time=$request->get('expirationTime');
