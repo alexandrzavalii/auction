@@ -130,7 +130,7 @@ public function store(ProductCreateRequest $request)
       public function bid($id)
       {
           //create the customer
-\Stripe\Stripe::setApiKey("sk_test_Z98H9hmuZWjFWfbkPFvrJMgk");
+           \Stripe\Stripe::setApiKey("sk_test_Z98H9hmuZWjFWfbkPFvrJMgk");
             $token = $_POST['stripeToken'];
             $customer = \Stripe\Customer::create(array(
               "source" => $token,

@@ -331,6 +331,11 @@ nav {
 /*-----CHECKOUT-------*/
 table#checkout td {
     border-top: none !important;
+
+    .thumbnail{
+      height:auto;
+      width:auto;
+    }
 }
 
 /*---------404----------*/

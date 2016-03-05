@@ -256,6 +256,9 @@ nav li {
 /*-----CHECKOUT-------*/
 table#checkout td {
   border-top: none !important; }
+  table#checkout td .thumbnail {
+    height: auto;
+    width: auto; }
 
 /*---------404----------*/
 .error {

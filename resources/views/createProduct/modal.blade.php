@@ -96,9 +96,7 @@
                     <div class="btn-group" role="group">
                       <button type="button" class="btn btn-default" data-dismiss="modal"  role="button">Close</button>
                     </div>
-                    <div class="btn-group btn-delete hidden" role="group">
-                      <button type="button" id="delImage" class="btn btn-default btn-hover-red" data-dismiss="modal"  role="button">Delete</button>
-                    </div>
+
                     <div class="btn-group" role="group">
                       {!! Form::submit('Create Bid', array('class'=>'btn btn-primary')) !!}
                     </div>
