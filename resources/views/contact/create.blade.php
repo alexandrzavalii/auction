@@ -1,9 +1,10 @@
 @extends('app')
 
 @section('content')
-<div class="container">
+@include('inc.header')
 
-<h1>Contact our Company</h1>
+
+<div class="container">
 
 @if (count($errors) > 0)
     <div class="alert alert-danger">

@@ -228,6 +228,9 @@ nav li {
 
 /*---------CONTACT -------*/
 /* --------product page-------- */
+#header {
+  height: 120px; }
+
 #header .search {
   display: inline-block; }
 
@@ -235,8 +238,9 @@ nav li {
   margin-left: 0; }
 
 .top-bar {
+  height: 100px;
   padding: 10px 0;
-  background: #1a1a1a;
+  background: black;
   border-bottom: 1px solid #222;
   line-height: 28px; }
 
@@ -269,18 +273,20 @@ ul.social-share li a {
   border-radius: 2px; }
 
 a.addProduct {
-  display: inline-block;
-  color: #fff;
-  background: #404040;
-  width: 100px;
-  height: 40px;
-  line-height: 25px;
-  text-align: center;
+  font-family: inherit;
+  font-size: 100%;
+  padding: .5em 1em;
+  color: #444;
+  color: rgba(0, 0, 0, 0.8);
+  border: 1px solid #999;
+  border: 0 transparent;
+  background-color: #E6E6E6;
+  text-decoration: none;
   border-radius: 2px; }
 
 a.addProduct:hover {
   text-decoration: none;
-  background: #614444;
+  background: #1a1a1a;
   color: #fff; }
 
 ul.social-share li a:hover {

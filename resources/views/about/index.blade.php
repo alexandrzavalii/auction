@@ -1,5 +1,6 @@
 @extends('app')
 @section('content')
+  @include('inc.header')
 <!-- Full Width Image Header -->
     <header class="header-image">
         <div class="headline">
