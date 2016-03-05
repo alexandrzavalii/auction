@@ -235,14 +235,17 @@ nav li {
   height: 500px;
   width: 262px;
   overflow: auto; }
-
-.caption {
-  color: white !important; }
-
-.product-name {
-  font-weight: bold; }
-  .product-name a:link, .product-name a:visited {
-    color: white; }
+  .thumbnail .btn-group-justified {
+    bottom: 35px;
+    position: absolute;
+    width: 200px;
+    left: 47px; }
+  .thumbnail .caption {
+    color: white !important; }
+  .thumbnail .product-name {
+    font-weight: bold; }
+    .thumbnail .product-name a:link, .thumbnail .product-name a:visited {
+      color: white; }
 
 .search {
   margin-bottom: 20px; }
@@ -316,6 +319,9 @@ table#checkout td {
   color: black; }
 
 /*---------FIX----------*/
+.alert-danger {
+  padding-left: 100px; }
+
 @media only screen and (min-width: 480px) {
   footer ul {
     display: block !important; } }

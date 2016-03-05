@@ -304,22 +304,29 @@ nav {
   height: 500px;
   width: 262px;
    overflow: auto;
-}
-.caption{
-  color: white !important;
+       .btn-group-justified {
+           bottom: 35px;
+           position: absolute;
+           width: 200px;
+           left: 47px;
+       }
+       .caption{
+         color: white !important;
+       }
+       .product-name{
+         font-weight: bold;
+         a{
+           &:link, &:visited{
+             color: white;
+           }
+         }
+       } 
 }
 
-.product-name{
-  font-weight: bold;
-  a{
-    &:link, &:visited{
-      color: white;
-    }
-  }
-}
 .search{
   margin-bottom: 20px;
 }
+
 .nothing{
   margin-left: 5px;
 }
@@ -403,6 +410,9 @@ table#checkout td {
 }
 
 /*---------FIX----------*/
+.alert-danger {
+  padding-left: 100px;
+}
 @media only screen and (min-width: 480px) {
     footer ul {
         display: block !important;

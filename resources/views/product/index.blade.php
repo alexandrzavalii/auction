@@ -9,20 +9,21 @@
             </div>
         </div>
   <div class="row">
-    <div class="col-md-9 col-xs-6 col-sm-9">
+    <div class="col-md-9 col-xs-9 col-sm-9">
       <form class="search form-inline" action="/products" method="get">
         <div class="form-group">
           <label for="query"></label>
             <input class="form-control " type="query" id="query" name="query">
             <input class="form-control button" type="submit" value="Search">
+            <a href="#" class="btn btn-default" data-toggle="modal" data-target="#createProduct"  >Add Product</a>
+          </form>
         </div>
-      </form>
+
 
     </div>
-     <div class="col-md-3 col-sm-3 col-xs-3">
-        <a href="#" class="btn btn-default btn-block" data-toggle="modal" data-target="#createProduct"  >Add Product</a>
-        </div>
+
   </div>
+
 <hr>
 
   @if (count($errors) > 0)

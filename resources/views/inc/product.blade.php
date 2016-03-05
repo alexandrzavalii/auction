@@ -1,6 +1,7 @@
 <div class="col-lg-3 col-lg-offset-0 col-md-4 col-md-offset-0 col-sm-6 col-sm-offset-0 col-xs-11 col-xs-offset-1 hero-feature">
 
         <div class="thumbnail">
+          
             <img src="/imgs/products/{{ $product->sku }}.png" alt="">
 
           <div class="caption">
