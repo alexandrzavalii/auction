@@ -55,6 +55,31 @@
 		$product = Product::findOrFail($id);
 		return view('product.show', compact('product'));
 	}
+  public function buy(Request $request)
+  {
+
+    $user = Auth::user();
+    $product = Product::findOrFail($request->get('product_id'));
+
+if($request->get('stripe_token')){
+   $charge = $user->charge($product->priceToCents(), [
+       'source' => $request->get('stripe_token'),
+       'receipt_email' => $user->email,
+       'metadata' => [
+           'name' => $user->name,
+       ],
+   ]);
+
+   if (! $charge) {
+       return back()->withErrors('Charge Failed');
+   }
+ } else
+ return \Redirect::route('products.index')->withErrors('Charge Failed');
+
+
+
+ return view('checkout.thankyou');  
+}
 public function store(ProductCreateRequest $request)
 	{
 

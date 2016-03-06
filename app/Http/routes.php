@@ -14,6 +14,7 @@ Route::post('password/email', 'Auth\PasswordController@postEmail');
 Route::get('password/reset/{token}', 'Auth\PasswordController@getReset');
 Route::post('password/reset', 'Auth\PasswordController@postReset');
 View::composer('inc.nav', 'App\Composers\NavComposer');
+Route::post('products/buy',['as'=>'products.buy', 'uses'=> 'ProductController@buy']);
 Route::post('products/bid/{id}', ['as' => 'products.bid', 'uses' => 'ProductController@bid']);
  Route::post('products/storeBid', ['as' => 'products.storeBid', 'uses' => 'ProductController@storeBid']);
 Route::resource('products', 'ProductController');

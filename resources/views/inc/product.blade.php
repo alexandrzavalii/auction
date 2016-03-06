@@ -1,7 +1,7 @@
 <div class="col-lg-3 col-lg-offset-0 col-md-4 col-md-offset-0 col-sm-6 col-sm-offset-0 col-xs-11 col-xs-offset-1 hero-feature">
 
         <div class="thumbnail">
-          
+
             <img src="/imgs/products/{{ $product->sku }}.png" alt="">
 
           <div class="caption">
@@ -66,22 +66,8 @@
                     </div>
                 @else
                     <div class="btn-group" role="group">
-                      {!! Form::open(array('url' => '/checkout')) !!}
-                          {!! Form::hidden('product_id', $product->id) !!}
-
-                          <script
-                              src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-                              data-key="{{env('STRIPE_API_PUBLIC','pk_test_GOBypCWqHxenhGDfHClBzJXH')}}"
-                              data-name="SuperAuction.com"
-                              data-locale="auto"
-                              data-billing-address=true
-                              data-shipping-address=true
-                              data-allow-remember-me=true
-                              data-label="Buy ${{ $product->price }}"
-                              data-description="{{ $product->name }}"
-                              data-amount="{{ $product->priceToCents() }}">
-                            </script>
-                          {!! Form::close() !!}
+                      <a href="#" class="btn btn-primary btn-block  " data-product="{{$product}}" data-toggle="modal" data-target="#buy"  >
+                        Buy {{$product->price}}</a>
                     </div>
                     <div class="btn-group" role="group">
                               {!! Form::open(['url' => '/cart/store']) !!}

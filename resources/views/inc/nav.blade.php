@@ -3,7 +3,7 @@
   <span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span>
   <ul>
     @if (Auth::guest())
-      <li><a href="/"><h4>Home</h4></a></li>
+      <li><a href="/"><h5>Home</h5></a></li>
     @else
 
       <li class="welcome"> Welcome, {{ Auth::user()->name }}</li>
