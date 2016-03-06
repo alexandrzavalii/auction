@@ -67,7 +67,7 @@
                 @else
                     <div class="btn-group" role="group">
                       <a href="#" class="btn btn-primary btn-block  " data-product="{{$product}}" data-toggle="modal" data-target="#buy"  >
-                        Buy {{$product->price}}</a>
+                        Buy ${{$product->price}}</a>
                     </div>
                     <div class="btn-group" role="group">
                               {!! Form::open(['url' => '/cart/store']) !!}

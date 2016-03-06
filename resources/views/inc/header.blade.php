@@ -4,7 +4,7 @@
               <div class="row">
                   <div class="col-sm-6 col-xs-4">
                       <div class="top-number"><p><i class="fa fa-phone-square"></i>  +359 879691979</p></div>
-                      <a href="#" class="addProduct" data-toggle="modal" data-target="#createProduct"  >Add Product</a>
+                      <a href="#" class="addProduct" data-toggle="modal" data-target="#createProduct"  ><i class="fa fa-plus fa-lg"></i></a>
                   </div>
                   <div class="col-sm-6 col-xs-8">
                      <div class="social">

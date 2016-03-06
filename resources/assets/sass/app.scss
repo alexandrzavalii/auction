@@ -172,74 +172,6 @@ td {
     font-size: 15px !important;
     text-align: center;
 }
-/* --------footer-------- */
-
-footer {
-    background-color: rgba(0, 0, 0, 0.9);
-    position: fixed;
-    text-align: center;
-    bottom: 0px;
-    width: 100%;
-    ul {
-        height: auto;
-    }
-    ol, ul {
-    margin-top: 0;
-    margin-bottom: 0px;
-}
-.glyphicon{
-    display: none;
-    color: rgba(152, 152, 152, 0.84);
-    font-size: 2em ;
-
-    &:hover{
-      color: white;
-      cursor: pointer;
-    }
-  }
-}
-
-nav {
-
-  li {
-    margin: 0;
-    display: inline-block;
-    text-transform: uppercase;
-  	width: 15%;
-
-      &:hover {
-         // background-color:rgba(152, 152, 152, 0.84);
-          text-decoration: none !important;
-      }
-
-    a{
-      display: inline-block;
-    	padding-top: 10px;
-    	padding-bottom: 10px;
-    	font-size: 13px;
-    	color: antiquewhite;
-
-      &:link{
-        text-decoration: none !important;
-      }
-
-      &:hover{
-
-        color:inherit !important;
-        text-shadow: 0 0 10px white !important;
-      }
-    }
-
-    &:hover{
-      text-shadow: 0 0 10px white;
-    	text-decoration: underline;
-    	transition: 0.15s;
-    }
-  }
-
-}
-
-
 /* --------Helper classes-------- */
 
 .darken {
@@ -418,29 +350,21 @@ ul.social-share li a {
   border-radius: 2px;
 }
 
-a.addProduct{
-  font-family: inherit;
-font-size: 100%;
-padding: .5em 1em;
-color: #444;
-color: rgba(0,0,0,.8);
-border: 1px solid #999;
-border: 0 rgba(0,0,0,0);
-background-color: #E6E6E6;
-text-decoration: none;
-border-radius: 2px;
-}
-a.addProduct:hover {
-  text-decoration: none;
-  background: #1a1a1a;
-  color: #fff;
-}
-
 ul.social-share li a:hover {
   background: #c52d2f;
   color: #fff;
 }
-
+a.addProduct{
+padding: .6em 1em;
+color: #fff;
+background-color: #404040;
+border-radius: 2px;
+}
+a.addProduct:hover {
+  text-decoration: none;
+  background: #c52d2f;
+  color: #fff;
+}
 .search i {
   color: #fff;
 }
@@ -573,7 +497,6 @@ input.search-form:hover {
 #bottom {
   background: black;
   border-top: 1px solid #222;
-  border-bottom: 5px solid #c52d2f;
   font-size: 14px;
 }
 
@@ -607,6 +530,73 @@ input.search-form:hover {
 #bottom .widget {
   margin-bottom: 0;
 }
+/* --------footer-------- */
+
+footer {
+    background-color: rgba(0, 0, 0, 0.9);
+    position: fixed;
+    text-align: center;
+    bottom: 0px;
+    width: 100%;
+    ul {
+        height: auto;
+    }
+    ol, ul {
+    margin-top: 0;
+    margin-bottom: 0px;
+}
+.glyphicon{
+    display: none;
+    color: rgba(152, 152, 152, 0.84);
+    font-size: 2em ;
+
+    &:hover{
+      color: white;
+      cursor: pointer;
+    }
+  }
+}
+
+nav {
+
+  li {
+    margin: 0;
+    display: inline-block;
+    text-transform: uppercase;
+  	width: 15%;
+
+      &:hover {
+         // background-color:rgba(152, 152, 152, 0.84);
+          text-decoration: none !important;
+      }
+
+    a{
+      display: inline-block;
+    	padding-top: 10px;
+    	padding-bottom: 10px;
+    	font-size: 13px;
+    	color: antiquewhite;
+
+      &:link{
+        text-decoration: none !important;
+      }
+
+      &:hover{
+
+        color:inherit !important;
+        text-shadow: 0 0 10px white !important;
+      }
+    }
+
+    &:hover{
+      text-shadow: 0 0 10px white;
+    	text-decoration: underline;
+    	transition: 0.15s;
+    }
+  }
+
+}
+
 /*------thumbnail-----*/
 
 .thumbnail{
@@ -650,6 +640,7 @@ input.search-form:hover {
     width: 100%;
   }
 }
+
 /*----------BID-------*/
 
 /*-----CHECKOUT-------*/

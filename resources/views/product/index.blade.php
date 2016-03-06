@@ -69,7 +69,6 @@
     var product = button.data('product')
     var modal = $(this)
     $("#card-number").focusout(function() {
-      console.log('on');
         var el = $(this);
         if ( ! Stripe.validateCardNumber(el.val())) {
             el.closest(".form-group").addClass("has-error");
