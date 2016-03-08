@@ -5,7 +5,7 @@ use App\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 class CartController extends Controller {
-    
+
     public function __construct()
     {
         $this->middleware('auth');
@@ -18,12 +18,12 @@ class CartController extends Controller {
         $cart = Auth::user()->cart;
         $bids = Auth::user()->bid;
         $total=0;
-       
+
         foreach ($cart as $item){
             $total=$total+$item->qty* $item->product->price;
-           
+
         }
-     
+
 
         return view('cart.index', compact('cart','total','bids'));
     }
@@ -73,9 +73,9 @@ class CartController extends Controller {
     public function complete(Request $request)
     {
         $user = Auth::user();
-       
+
         // Add the order
-        
+
         // Update the old cart
         foreach ($user->cart as $cart) {
             $cart->complete = 1;

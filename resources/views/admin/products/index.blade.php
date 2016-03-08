@@ -37,7 +37,7 @@
                  <a class="btn btn-danger" href="{{ URL::route('admin.products.deleteBid', $product->id) }}">Delete Bid</a>
                  @endif
               @endforeach
-                               <a class="btn btn-warning" href="{{ URL::route('admin.products.createBid', $product->id) }}">Create Bid</a>   
+                               <a class="btn btn-warning" href="{{ URL::route('admin.products.createBid', $product->id) }}">Create Bid</a>
           </td>
           <td>
             {!! Form::open(array('route' => array('admin.products.destroy', $product->id), 'method' => 'delete')) !!}
@@ -46,7 +46,7 @@
               </button>
             {!! Form::close() !!}
           </td>
-          
+
         </tr>
 
       @endforeach
