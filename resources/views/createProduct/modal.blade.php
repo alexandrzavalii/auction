@@ -61,7 +61,7 @@
 
 
 
- <!-- Store Modal dialog -->
+ <!-- BID Modal dialog -->
   <div id="storeBid" class="modal fade" tabindex="-1" role="dialog">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -90,7 +90,11 @@
 
 		<div class="form-group">
 	 {!! Form::label('amount', 'Minimum amount') !!}
-				   {!! Form::number('amount', null, array('required', 'max'=>233, 'class'=>'form-control')) !!}
+				   {!! Form::number('amount', null, array('required',  'class'=>'form-control')) !!}
+		</div>
+    <div class="form-group">
+	 {!! Form::label('reservedPrice', 'Reserved Price') !!}
+				   {!! Form::number('reservedPrice', null, array('required',  'class'=>'form-control')) !!}
 		</div>
           </div><!-- .modal-body -->
 

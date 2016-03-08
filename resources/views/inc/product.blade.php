@@ -28,7 +28,7 @@
                                    @if(Auth::user()->id ==$product->bid->user_id)
                                    <h4 class="text-success">You are winning!</h4>
                                    @elseif($product->authorId == Auth::user()->id)
-                                   <h4 class="text-warning">This is your bid!</h4>
+                                   <h4 class="text-warning">Reserved:{{$product->bid->reservedPrice}}</h4>
                                    @else
                                   <script
                                       src="https://checkout.stripe.com/checkout.js" class="stripe-button"

@@ -23,12 +23,13 @@ class BidCreateRequest extends Request {
 	public function rules()
 	{
         $price = $this->input('max');
-      
+
         return [
           'expirationDate'        => "required|after:". \Carbon\Carbon::now()->subDay(),
         'expirationTime'        => 'required|date_format:H:i|after:'.\Carbon\Carbon::now()->toTimeString(),
           'amount'         => "required|numeric|max: $price",
         'product_id' => "required|unique:bids,product_id,". $this->get('product_id'),
+        'reservedPrice' => "required|numeric|min: ".$this->get('amount'),
         ];
 	}
 

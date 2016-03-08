@@ -19,7 +19,7 @@
 
      public function index(Request $request)
 	{
-
+//search query
          if ($request->get('query')) {
              $this->validate($request, [
         'query' => 'required'
@@ -28,7 +28,10 @@
              $products = Product::orderBy('name', 'asc')->where('name', 'LIKE', '%' . $search . '%')->get();
             return view('product.index', compact('products'));
          }
-		$products = Product::orderBy('name', 'asc')->get();
+
+         //charge user if the time passes
+		       $products = Product::orderBy('name', 'asc')->get();
+
               foreach ($products as $product) {
                 if($product->bid){
                 if(strtotime($product->bid->expiration)-strtotime(Carbon\Carbon::now())<0){
@@ -41,7 +44,6 @@
                     ));
                     }
                   $product->bid->delete();
-
                 }
               }
               }
@@ -78,7 +80,7 @@ if($request->get('stripe_token')){
 
 
 
- return view('checkout.thankyou');  
+ return view('checkout.thankyou');
 }
 public function store(ProductCreateRequest $request)
 	{
@@ -146,7 +148,8 @@ public function store(ProductCreateRequest $request)
 	      'user_id' => 0,
 	      'product_id' => $request->get('product_id'),
 	      'expiration' => $storedate,
-          'amount' => $request->get('amount')
+          'amount' => $request->get('amount'),
+          'reservedPrice'=> $request-> get('reservedPrice')
 	    ));
         $bids->save();
         return \Redirect::route('products.index')
@@ -163,7 +166,6 @@ public function store(ProductCreateRequest $request)
               "description" => "Example customer")
             );
 
-
           //check the bid
 		     $product = Product::findOrFail($id);
          $bidUpCents=$product->bid->priceToCents() + 1000;
@@ -175,8 +177,6 @@ public function store(ProductCreateRequest $request)
             'user_id' => $user->id,
             'customerId' => $customer->id
         ]);
-
-
 
 
 
