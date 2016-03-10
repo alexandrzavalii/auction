@@ -10,13 +10,7 @@
 
              @if($product->bid)
 
-
-                	<div class="row">
-                    <div class="col-md-12 col-xs-12">
-                                <h4><div data-countdown="{{strtotime($product->bid->expiration)}}"></div></h4>
-                    </div>
-
-						</div>
+                                <h4><div class="countdown" data-countdown="{{strtotime($product->bid->expiration)}}"></div></h4>
 
                {!! Form::open(array('route' => array('products.bid', $product->id), 'id'=>'createBid', 'class' => 'form', 'novalidate' => 'novalidate')) !!}
                 {!! Form::hidden('timeLeft', date("H:i:s",strtotime($product->bid->expiration)-strtotime(Carbon\Carbon::now()))) !!}
@@ -28,21 +22,9 @@
                                    @if(Auth::user()->id ==$product->bid->user_id)
                                    <h4 class="text-success">You are winning!</h4>
                                    @elseif($product->authorId == Auth::user()->id)
-                                   <h4 class="text-warning">Reserved:{{$product->bid->reservedPrice}}</h4>
+                                   <h4 class="text-warning">Reserved:${{$product->bid->reservedPrice}}</h4>
                                    @else
-                                  <script
-                                      src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-                                      data-key="{{env('STRIPE_API_PUBLIC', 'pk_test_GOBypCWqHxenhGDfHClBzJXH')}}"
-                                      data-name="SuperAuction.com"
-                                      data-locale="auto"
-                                      data-billing-address=true
-                                      data-shipping-address=true
-                                      data-allow-remember-me=true
-                                      data-label="Bid $10"
-                                      data-description="{{ $product->name }}"
-                                      data-amount="{{ $product->bid->priceToCents()+1000 }}">
-                                    </script>
-
+                                     <a href="#"  class="btn btn-warning btn-block  " data-product="{{$product}}" data-toggle="modal" data-target="#bid"  >Bid</a>
                                    @endif
 
 							</div>
@@ -66,8 +48,9 @@
                     </div>
                 @else
                     <div class="btn-group" role="group">
-                      <a href="#" class="btn btn-primary btn-block  " data-product="{{$product}}" data-toggle="modal" data-target="#buy"  >
-                        Buy ${{$product->price}}</a>
+                      <a class="btn btn-warning" href="/products/buy/{{ $product->id }}">
+                       Buy ${{$product->price}}
+                     </a>
                     </div>
                     <div class="btn-group" role="group">
                               {!! Form::open(['url' => '/cart/store']) !!}

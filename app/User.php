@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace App;
 
@@ -14,9 +14,9 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 
 	use Authenticatable, CanResetPassword, Billable;
 	protected $table = 'users';
-	protected $fillable = ['name', 'email', 'password'];
+	protected $fillable = ['name', 'email', 'password','stripe_id'];
 
-	protected $hidden = ['password', 'remember_token'];
+	protected $hidden = ['password', 'remember_token','stripe_id'];
 
     protected $dates = ['trial_ends_at', 'subscription_ends_at'];
     public function cart()
@@ -24,7 +24,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
          return $this->hasMany('App\Cart')
            ->where('complete', 0);
      }
-    
+
      public function bid()
      {
          return $this->hasMany('App\Bids')

@@ -31,7 +31,7 @@
                         </div>
                       </td>
                         <td class="col-sm-1 col-md-1" style="text-align: center">
-            <input type="email" class="form-control" id="exampleInputEmail1" value="{{$item->qty }}">
+            <input  class="form-control" id="exampleInputEmail1" value="{{$item->qty }}">
                         </td>
                         <td class="col-sm-1 col-md-1 text-center"><strong>${{ $item->product->price }}</strong></td>
                         <td class="col-sm-1 col-md-1 text-center"><strong>${{$item->qty * $item->product->price}}</strong></td>
@@ -73,24 +73,9 @@
                             <span class="glyphicon glyphicon-shopping-cart"></span> Continue Shopping
                         </a></td>
                         <td>
-                        {!! Form::open(array('action' => 'CartController@complete')) !!}
-                    {!! Form::hidden('product_id', $item->product->id) !!}
-
-                              <script
-                                src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-                                data-key="{{env('STRIPE_API_PUBLIC')}}"
-                                 data-name="SuperAuction.com"
-                                data-locale="auto"
-                                data-billing-address=true
-                                data-shipping-address=true
-                                data-allow-remember-me=true
-                                data-label="checkout"
-                                data-description="Description"
-                                data-amount="{{ $total*100 }}">
-                              </script>
-
-                        {!! Form::close() !!}
-
+                              <a class="btn btn-warning btn-lg" href="cart/buy">
+                               Buy
+                             </a>
                         </td>
                     </tr>
                 </tbody>
@@ -140,18 +125,6 @@
 @endsection
 @section('counterjs')
   <script>
-
-  $('#storeBid').on('show.bs.modal', function (event) {
-    var button = $(event.relatedTarget) // Button that triggered the modal
-    var product = button.data('product') // Extract info from data-* attributes
-    // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
-    // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
-    var modal = $(this)
-    modal.find('.modal-title').text('Create bid for ' + product["name"])
-     modal.find(".modal-body input[name='product_id'] ").val(product["id"])
-    modal.find(".modal-body input[name='max'] ").val(product["price"])
-  })
-
 
            $('[data-countdown]').each(function() {
      var $this = $(this), finalDate = $(this).data('countdown');

@@ -530,6 +530,10 @@ nav {
     width: 200px;
     left: 47px;
   }
+  .countdown {
+    top:10px;
+    position: absolute;
+  }
   .caption {
     color: white !important;
   }
@@ -542,9 +546,6 @@ nav {
       }
     }
   }
-}
-.search {
-  margin-bottom: 20px;
 }
 .nothing {
   margin-left: 5px;

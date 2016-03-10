@@ -21,7 +21,6 @@ class CartController extends Controller {
 
         foreach ($cart as $item){
             $total=$total+$item->qty* $item->product->price;
-
         }
 
 
@@ -70,17 +69,42 @@ class CartController extends Controller {
      * @param Request $request
      * @return $this|\Illuminate\View\View
      */
-    public function complete(Request $request)
+    public function buy()
     {
-        $user = Auth::user();
+      $user = Auth::user();
+      $cart = Auth::user()->cart;
+      $total=0;
+      $shipping=7;
+
+      if($user->stripe_id){
+        foreach ($cart as $item){
+            $total=$total+$item->qty* $item->product->price;
+        }
+  \Stripe\Stripe::setApiKey("sk_test_Z98H9hmuZWjFWfbkPFvrJMgk");
+        \Stripe\Charge::create(array(
+          "amount" => ($total+$shipping)*100, // amount in cents, again
+          "currency" => "usd",
+          'receipt_email' => $user->email,
+          "customer" => $user->stripe_id,
+          'metadata' => [
+              'name' => $user->name,
+          ],
+          ));
+          foreach ($user->cart as $cart) {
+              $cart->complete = 1;
+              $cart->save();
+          }
+
+
+      }else{
+        return \Redirect::route('user.index')->withErrors('Add your card please');
+
+      }
 
         // Add the order
 
         // Update the old cart
-        foreach ($user->cart as $cart) {
-            $cart->complete = 1;
-            $cart->save();
-        }
+
         return view('checkout.thankyou', compact('order'));
     }
 }

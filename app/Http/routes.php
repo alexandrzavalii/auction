@@ -14,14 +14,18 @@ Route::post('password/email', 'Auth\PasswordController@postEmail');
 Route::get('password/reset/{token}', 'Auth\PasswordController@getReset');
 Route::post('password/reset', 'Auth\PasswordController@postReset');
 View::composer('inc.nav', 'App\Composers\NavComposer');
-Route::post('products/buy',['as'=>'products.buy', 'uses'=> 'ProductController@buy']);
-Route::post('products/bid/{id}', ['as' => 'products.bid', 'uses' => 'ProductController@bid']);
- Route::post('products/storeBid', ['as' => 'products.storeBid', 'uses' => 'ProductController@storeBid']);
+Route::get('products/buy/{id}',['uses'=> 'ProductController@buy']);
+
+Route::post('products/bid', ['as' => 'products.bid', 'uses' => 'BidController@bid']);
+Route::post('products/storeBid', ['as' => 'products.storeBid', 'uses' => 'BidController@storeBid']);
+
 Route::resource('products', 'ProductController');
+Route::post('user/saveCard', ['as' => 'user.saveCard', 'uses' => 'UserController@saveCard']);
+Route::resource('user','UserController');
 Route::post('cart/store', 'CartController@store');
 Route::get('cart', 'CartController@index');
 Route::get('cart/remove/{id}', 'CartController@remove');
-Route::post('cart/complete', ['as' => 'cart.complete','uses' => 'CartController@complete']);
+Route::get('cart/buy', ['as' => 'cart.buy','uses' => 'CartController@buy']);
 
 Route::controllers(['auth' => 'Auth\AuthController','password' => 'Auth\PasswordController']);
 

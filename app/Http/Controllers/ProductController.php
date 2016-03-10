@@ -57,28 +57,29 @@
 		$product = Product::findOrFail($id);
 		return view('product.show', compact('product'));
 	}
-  public function buy(Request $request)
+  public function buy($id)
   {
 
     $user = Auth::user();
-    $product = Product::findOrFail($request->get('product_id'));
+    $product = Product::findOrFail($id);
 
-if($request->get('stripe_token')){
-   $charge = $user->charge($product->priceToCents(), [
-       'source' => $request->get('stripe_token'),
-       'receipt_email' => $user->email,
-       'metadata' => [
-           'name' => $user->name,
-       ],
-   ]);
-
-   if (! $charge) {
-       return back()->withErrors('Charge Failed');
-   }
- } else
- return \Redirect::route('products.index')->withErrors('Charge Failed');
+    if($user->stripe_id){
+\Stripe\Stripe::setApiKey("sk_test_Z98H9hmuZWjFWfbkPFvrJMgk");
+      \Stripe\Charge::create(array(
+        "amount" => $product->priceToCents(), // amount in cents, again
+        "currency" => "usd",
+        'receipt_email' => $user->email,
+        "customer" => $user->stripe_id,
+        'metadata' => [
+            'name' => $user->name,
+        ],
+        ));
 
 
+    }else{
+      return \Redirect::route('user.index')->withErrors('Add your card please');
+
+    }
 
  return view('checkout.thankyou');
 }
@@ -135,53 +136,6 @@ public function store(ProductCreateRequest $request)
             ->with('message', 'Product deleted!');
 	}
 
-          public function storeBid(BidCreateRequest $request)
-    {
 
-        $date=$request->get('expirationDate');
-        $time=$request->get('expirationTime');
-        $timestamp = strtotime($date.$time.':01');
-
-        $storedate=date("Y-m-d H:i:s", $timestamp);
-
-      $bids = new Bids(array(
-	      'user_id' => 0,
-	      'product_id' => $request->get('product_id'),
-	      'expiration' => $storedate,
-          'amount' => $request->get('amount'),
-          'reservedPrice'=> $request-> get('reservedPrice')
-	    ));
-        $bids->save();
-        return \Redirect::route('products.index')
-            ->with('message', 'Bid created!');
-
-    }
-      public function bid($id)
-      {
-          //create the customer
-           \Stripe\Stripe::setApiKey("sk_test_Z98H9hmuZWjFWfbkPFvrJMgk");
-            $token = $_POST['stripeToken'];
-            $customer = \Stripe\Customer::create(array(
-              "source" => $token,
-              "description" => "Example customer")
-            );
-
-          //check the bid
-		     $product = Product::findOrFail($id);
-         $bidUpCents=$product->bid->priceToCents() + 1000;
-          $bidUpdate=$product->bid->amount+10;
-          $user = Auth::user();
-//create customer
-          $product->bid->update([
-            'amount' => $bidUpdate,
-            'user_id' => $user->id,
-            'customerId' => $customer->id
-        ]);
-
-
-
-          return \Redirect::route('products.index')
-          ->with('message', 'Your account will be charged at: '. $product->bid->expiration);
-      }
 
  }

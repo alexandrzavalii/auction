@@ -6,8 +6,10 @@
       <li><a href="/"><h5>Home</h5></a></li>
     @else
 
-      <li class="welcome"> Welcome, {{ Auth::user()->name }}</li>
+      <li class="welcome"> <a href="/user">Welcome, {{ Auth::user()->name }}</a> </li>
+
       	<li>
+
              @if($count!=0)
       	    <a href="/cart">
       	        <i class="fa fa-shopping-cart fa-2x"></i>

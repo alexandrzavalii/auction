@@ -14,6 +14,7 @@ class Kernel extends ConsoleKernel
      */
     protected $commands = [
         // Commands\Inspire::class,
+
     ];
 
     /**
@@ -26,5 +27,9 @@ class Kernel extends ConsoleKernel
     {
         // $schedule->command('inspire')
         //          ->hourly();
+        $schedule->call(function () {
+          \Log::info('I was here @ ' . \Carbon\Carbon::now());
+        })->everyMinute();
+
     }
 }

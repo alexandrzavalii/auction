@@ -29,11 +29,12 @@
 
    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
    <script src="/lib/jquery.countdown.min.js"></script>
-
+   <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
    @yield('footer_js')
    @yield('navjs')
    @yield('modaljs')
    @yield('counterjs')
+   @yield('userjs')
 
  </body>
  </html>
