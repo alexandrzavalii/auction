@@ -32,21 +32,7 @@
          //charge user if the time passes
 		       $products = Product::orderBy('name', 'asc')->get();
 
-              foreach ($products as $product) {
-                if($product->bid){
-                if(strtotime($product->bid->expiration)-strtotime(Carbon\Carbon::now())<0){
-                  if($product->bid->customerId){
-                    \Stripe\Stripe::setApiKey("sk_test_Z98H9hmuZWjFWfbkPFvrJMgk");
-                  \Stripe\Charge::create(array(
-                    "amount" => $product->bid->priceToCents(), // amount in cents, again
-                    "currency" => "usd",
-                    "customer" => $product->bid->customerId
-                    ));
-                    }
-                  $product->bid->delete();
-                }
-              }
-              }
+        
 		return view('product.index', compact('products'));
 	}
 

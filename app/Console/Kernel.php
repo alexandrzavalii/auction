@@ -4,7 +4,7 @@ namespace App\Console;
 
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
-
+use App\Bids;
 class Kernel extends ConsoleKernel
 {
     /**
@@ -28,7 +28,24 @@ class Kernel extends ConsoleKernel
         // $schedule->command('inspire')
         //          ->hourly();
         $schedule->call(function () {
-          \Log::info('I was here @ ' . \Carbon\Carbon::now());
+          $bids = Bids::orderBy('id')->get();
+          foreach ($bids as $bid) {
+            if(strtotime($bid->expiration)-strtotime(\Carbon\Carbon::now())<0){
+              if($bid->customerId){
+                \Stripe\Stripe::setApiKey("sk_test_Z98H9hmuZWjFWfbkPFvrJMgk");
+              \Stripe\Charge::create(array(
+                "amount" => $bid->priceToCents(), // amount in cents, again
+                "currency" => "usd",
+                "customer" => $bid->customerId
+                ));
+                \Log::info('Charged: '. $bid->amount);
+                }
+              $bid->delete();
+              \Log::info('Deleted  bid: '. $bid->id);
+            }
+
+          }
+
         })->everyMinute();
 
     }
