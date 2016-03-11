@@ -1,3 +1,10 @@
+
+$('#storeBid, #bid, #createProduct').on('show.bs.modal', function (event) {
+  var modal = $(this)
+  var $form =   modal.find('form');
+  $form.append($('<input type="hidden" name="_token" value="{{ csrf_token() }}">'));
+
+})
 $('#storeBid').on('show.bs.modal', function (event) {
   var button = $(event.relatedTarget)
   var product = button.data('product')
@@ -26,9 +33,9 @@ $('#bid').on('show.bs.modal', function (event) {
 })
 
  //textarea limit
- $('#characterLeft').text('233 characters left');
+ $('#characterLeft').text('197 characters left');
 $('#message').keyup(function () {
-  var max = 233;
+  var max = 197;
   var len = $(this).val().length;
   if (len >= max) {
       $('#characterLeft').text('You have reached the limit');

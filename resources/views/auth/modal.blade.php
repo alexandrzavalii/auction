@@ -179,9 +179,7 @@
   @section('js')
     $('#logInModal, #resetPasswordModal, #signUpModal').on('show.bs.modal', function (event) {
       var modal = $(this)
-
       var $form =   modal.find('form');
-      console.log($form);
       $form.append($('<input type="hidden" name="_token" value="{{ csrf_token() }}">'));
 
     })

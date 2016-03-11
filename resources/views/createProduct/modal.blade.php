@@ -9,7 +9,7 @@
           {!! Form::open(array('route' => 'products.store', 'class' => 'form', 'novalidate' => 'novalidate', 'files' => true)) !!}
 
           <div class="modal-body">
-            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+
 
           <div class="form-group">
                 {!! Form::text('name', null, array('required', 'class'=>'form-control', 'placeholder'=>'Product Name')) !!}
@@ -32,7 +32,7 @@
             </div>
 
             <div class="form-group">
-              {!! Form::textarea('description', null, array('class'=>'form-control', 'id'=>"message", 'maxlength'=>"233", 'rows'=>"7", 'placeholder'=>'Enter a short description')) !!}
+              {!! Form::textarea('description', null, array('class'=>'form-control', 'id'=>"message", 'maxlength'=>"197", 'rows'=>"7", 'placeholder'=>'Enter a short description')) !!}
               <span class="help-block"><p id="characterLeft" class="help-block ">You have reached the limit</p></span>
              </div>
 
@@ -74,7 +74,7 @@
             {!! Form::hidden('product_id', 'product_id') !!}
             {!! Form::hidden('max', 'sad') !!}
             {!! Form::hidden('userTimezone', Auth::user()->timezone) !!}
-           <input type="hidden" name="_token" value="{{ csrf_token() }}">
+
 
 <div class="form-group">
 			 {!! Form::label('expirationDate', 'Expiration') !!}
@@ -124,7 +124,7 @@
         <form method="POST" action="{{ action('BidController@bid') }}" accept-charset="UTF-8"  id="bid-form">
 
           <div class="modal-body">
-           <input type="hidden" name="_token" value="{{ csrf_token() }}">
+
            <input type="hidden" name="product_id" value="">
 
            <div class="form-group">
