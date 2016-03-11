@@ -21,7 +21,7 @@
           <h4 class="modal-title">Login</h4>
         </div>
 
-        <form id="login" class="form-horizontal" role="form" method="POST" action="{{ url('https://ancient-plateau-60650.herokuapp.com/auth/login') }}">
+        <form id="login" class="form-horizontal" role="form" method="POST" action="{{ url('/auth/login') }}">
 
           <div class="modal-body">
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
@@ -114,7 +114,7 @@
           <h4 class="modal-title">Sign up</h4>
         </div>
 
-        <form class="form-horizontal" role="form" method="POST" action="{{ url('ancient-plateau-60650.herokuapp.com/auth/login') }}">
+        <form class="form-horizontal" role="form" method="POST" action="{{ url('/auth/register') }}">
 
           <div class="modal-body">
             <input type="hidden" name="_token" value="{{ csrf_token() }}">

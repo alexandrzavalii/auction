@@ -1,6 +1,6 @@
 <?php
 
-Route::group(['middleware' => ['web']], function () {
+Route::group(array('https'), function () {
 
 
 Route::get('/', ['as' => 'contact', 'uses' => 'WelcomeController@create']);
