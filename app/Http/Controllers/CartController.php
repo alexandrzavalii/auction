@@ -14,17 +14,12 @@ class CartController extends Controller {
      * Show the cart
      */
     public function index()
-    {   $user = Auth::user();
-        $cart = Auth::user()->cart;
-        $bids = Auth::user()->bid;
-        $total=0;
+    {
+            $user = Auth::user();
+            $cart = Auth::user()->cart;
+            $bids = Auth::user()->bid;
 
-        foreach ($cart as $item){
-            $total=$total+$item->qty* $item->product->price;
-        }
-
-
-        return view('cart.index', compact('cart','total','bids'));
+        return view('cart.index', compact('cart','bids'));
     }
     /**
      * Add an item to the cart
@@ -36,18 +31,20 @@ class CartController extends Controller {
     {
         $product = Product::find($request->get('product_id'));
         $cart = Auth::user()->cart;
-        foreach ($cart as $item){
-            if($item->product->id ==$product->id ){
-                  $item->increment('qty');
-                 $item->save();
-                return redirect('/products');
+            foreach ($cart as $item){
+                if($item->product->id ==$product->id )
+                {
+                      $item->increment('qty');
+                      $item->save();
+                    return redirect('/products');
+                }
             }
-        }
         $cart = new Cart([
             'product_id' => $product->id,
-            'qty' => $request->get('qty', 1),
-            'price' => $product->price,
+            'qty'        => $request->get('qty', 1),
+            'price'      => $product->price,
         ]);
+
         Auth::user()->cart()->save($cart);
         return redirect('/products');
     }
@@ -59,8 +56,7 @@ class CartController extends Controller {
      */
     public function remove($id)
     {
-        Auth::user()->cart()
-          ->where('id', $id)->firstOrFail()->delete();
+        Auth::user()->cart()->where('id', $id)->firstOrFail()->delete();
         return redirect('/cart');
     }
     /**
@@ -76,35 +72,32 @@ class CartController extends Controller {
       $total=0;
       $shipping=7;
 
-      if($user->stripe_id){
-        foreach ($cart as $item){
-            $total=$total+$item->qty* $item->product->price;
-        }
-  \Stripe\Stripe::setApiKey("sk_test_Z98H9hmuZWjFWfbkPFvrJMgk");
-        \Stripe\Charge::create(array(
-          "amount" => ($total+$shipping)*100, // amount in cents, again
-          "currency" => "usd",
-          'receipt_email' => $user->email,
-          "customer" => $user->stripe_id,
-          'metadata' => [
-              'name' => $user->name,
-          ],
-          ));
-          foreach ($user->cart as $cart) {
-              $cart->complete = 1;
-              $cart->save();
-          }
+        if($user->stripe_id)
+        {
+            foreach ($cart as $item){
+                $total=$total+$item->qty* $item->product->price;
+            }
+
+            \Stripe\Stripe::setApiKey("sk_test_Z98H9hmuZWjFWfbkPFvrJMgk");
+            \Stripe\Charge::create(array(
+                  'amount'        => ($total+$shipping)*100, // amount in cents, again
+                  'currency'      => "usd",
+                  'receipt_email' => $user->email,
+                  'customer'      => $user->stripe_id,
+                  'metadata'      => [
+                  'name'          => $user->name,
+              ],
+              ));
+
+              foreach ($user->cart as $cart) {
+                  $cart->complete = 1;
+                  $cart->save();
+              }
+
+        }else
+          return \Redirect::route('user.index')->withErrors('Add your card please');
 
 
-      }else{
-        return \Redirect::route('user.index')->withErrors('Add your card please');
-
-      }
-
-        // Add the order
-
-        // Update the old cart
-
-        return view('checkout.thankyou', compact('order'));
+      return view('checkout.thankyou', compact('order'));
     }
 }

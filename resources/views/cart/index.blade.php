@@ -19,6 +19,7 @@
                     </tr>
                 </thead>
                 <tbody>
+                  {{-- */$total=0;/* --}}
                     @foreach ($cart as $item)
                     <tr>
                         <td class="col-sm-1 col-md-1" style="text-align: center">
@@ -29,18 +30,24 @@
                                 <span>Status: </span><span class="text-success"><strong>In Stock</strong></span>
                             </div>
                         </div>
-                      </td>
+                       </td>
+
                         <td class="col-sm-1 col-md-1" style="text-align: center">
-            <input  class="form-control" id="exampleInputEmail1" value="{{$item->qty }}">
+                              <input  class="form-control" id="exampleInputEmail1" value="{{$item->qty }}">
                         </td>
+
                         <td class="col-sm-1 col-md-1 text-center"><strong>${{ $item->product->price }}</strong></td>
+
                         <td class="col-sm-1 col-md-1 text-center"><strong>${{$item->qty * $item->product->price}}</strong></td>
+
                         <td class="col-sm-1 col-md-1">
                             <a class="btn btn-danger" href="/cart/remove/{{ $item->id }}">
                             <span class="glyphicon glyphicon-remove"></span> Remove
                         </a>
                         </td>
+
                     </tr>
+                    {{-- */$total=$total+$item->qty * $item->product->price;/* --}}
                     @endforeach
 
                     <tr>
@@ -98,43 +105,26 @@
                 <tbody>
                     @foreach ($bids as $bid)
                       <tr>
-                                       <td class="col-sm-6 col-md-6" style="text-align: center">
-                        <div class="media">
-                            <a class="thumbnail pull-left" href="#"> <img class="media-object" src="/imgs/products/{{ $bid->product->sku }}.png" style="width: 72px; height: 72px;"> </a>
-                            <div class="media-body">
-                                <h4 class="media-heading"><a href="#">{{ $bid->product->name }}</a></h4>
-                                <span>Status: </span><span class="text-success"><strong>In Stock</strong></span>
-                            </div>
-                        </div>
-                      </td>
-                    <td class="col-sm-3 col-md-3 text-center"><strong>${{ $bid->amount }}</strong></td>
-                    <td class="col-sm-3 col-md-3 text-center"><div data-countdown="{{strtotime($bid->expiration)}}"></div></td>
-                        </tr>
-
+                        <td class="col-sm-6 col-md-6" style="text-align: center">
+                          <div class="media">
+                              <a class="thumbnail pull-left" href="#"> <img class="media-object" src="/imgs/products/{{ $bid->product->sku }}.png" style="width: 72px; height: 72px;"> </a>
+                              <div class="media-body">
+                                  <h4 class="media-heading"><a href="#">{{ $bid->product->name }}</a></h4>
+                                  <span>Status: </span><span class="text-success"><strong>In Stock</strong></span>
+                              </div>
+                          </div>
+                       </td>
+                        <td class="col-sm-3 col-md-3 text-center"><strong>${{ $bid->amount }}</strong></td>
+                        <td class="col-sm-3 col-md-3 text-center"><div data-countdown="{{strtotime($bid->expiration)}}"></div></td>
+                      </tr>
                     @endforeach
                 </tbody>
             </table>
         </div>
     </div>
-
     @endif
-
 </div>
-
-
 @endsection
-@section('counterjs')
-  <script>
-
-           $('[data-countdown]').each(function() {
-     var $this = $(this), finalDate = $(this).data('countdown');
-               expiration = new Date(finalDate * 1000);
-
-     $this.countdown(expiration, function(event) {
-       $this.html(event.strftime('%D days %H:%M:%S'));
-     });
-
-   });
-  </script>
-
+@section('js')
+   @include('partialsjs.counterjs')
 @endsection
