@@ -24,9 +24,6 @@
         <form id="login" class="form-horizontal" role="form" method="POST" action="{{ url('/auth/login') }}">
 
           <div class="modal-body">
-            <input type="hidden" name="_token" value="{{ csrf_token() }}">
-
-
             <div class="form-group">
               <label class="col-md-4 control-label">E-Mail Address</label>
               <div class="col-md-6">
@@ -74,16 +71,15 @@
 
 
  <!-- Reset Password Modal dialog -->
-  <div id="resetPassword" class="modal fade" tabindex="-1" role="dialog">
+  <div id="resetPasswordModal" class="modal fade" tabindex="-1" role="dialog">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
           <h4 class="modal-title">Reset</h4>
         </div>
-  	<form class="form-horizontal" role="form" method="POST" action="/password/email">
+  	<form id="resetPassword" class="form-horizontal" role="form" method="POST" action="/password/email">
 
           <div class="modal-body">
-           <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
 		<div class="form-group">
 			<label class="col-md-4 control-label">E-Mail Address</label>
@@ -114,10 +110,10 @@
           <h4 class="modal-title">Sign up</h4>
         </div>
 
-        <form class="form-horizontal" role="form" method="POST" action="{{ url('/auth/register') }}">
+        <form id="signUpModal" class="form-horizontal" role="form" method="POST" action="{{ url('/auth/register') }}">
 
           <div class="modal-body">
-            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+
             <div class="form-group">
               <label class="col-md-4 control-label">Name</label>
               <div class="col-md-6">
@@ -180,3 +176,15 @@
       </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
   </div><!-- /.modal -->
+  @section('js')
+    $('#logInModal, #resetPasswordModal, #signUpModal').on('show.bs.modal', function (event) {
+      var modal = $(this)
+
+      var $form =   modal.find('form');
+      console.log($form);
+      $form.append($('<input type="hidden" name="_token" value="{{ csrf_token() }}">'));
+
+    })
+
+
+  @endsection
