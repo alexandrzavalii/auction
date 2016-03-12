@@ -14,7 +14,7 @@ class BidController extends Controller
     //
     public function storeBid(BidCreateRequest $request)
     {
-
+      $price = $request->get('max');
       $date=$request->get('expirationDate');
       $time=$request->get('expirationTime');
       $timestamp = strtotime($date.$time.':01');

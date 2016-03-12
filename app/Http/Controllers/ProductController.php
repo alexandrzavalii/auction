@@ -6,7 +6,7 @@ namespace App\Http\Controllers;
   use Illuminate\Http\Request;
   use App\Http\Requests\ProductCreateRequest;
   use Illuminate\Support\Facades\Auth;
-
+  
   class ProductController extends Controller
   {
       public function __construct()
@@ -17,6 +17,7 @@ namespace App\Http\Controllers;
       public function index(Request $request)
       {
           //search query
+
            if ($request->get('query'))
            {
              $this->validate($request, [

@@ -6,8 +6,6 @@
 
 <div class="container">
       @include('createProduct.modal')
-
-
   @if (count($errors) > 0)
    <div class="alert alert-danger">
        <ul>

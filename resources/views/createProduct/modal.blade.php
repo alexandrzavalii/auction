@@ -73,9 +73,9 @@
           <div class="modal-body">
             {!! Form::hidden('product_id', 'product_id') !!}
             {!! Form::hidden('max', 'sad') !!}
-            {!! Form::hidden('userTimezone', Auth::user()->timezone) !!}
+            {!! Form::hidden('offset', 'offset') !!}
 
-
+          {{  \Carbon\Carbon::now()->toTimeString()}}
 <div class="form-group">
 			 {!! Form::label('expirationDate', 'Expiration') !!}
 				{!! Form::date('expirationDate',\Carbon\Carbon::now(), array('required', 'class'=>'form-control')) !!}

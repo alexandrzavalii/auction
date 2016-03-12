@@ -23,13 +23,30 @@ class BidCreateRequest extends Request {
 	public function rules()
 	{
         $price = $this->input('max');
+        $offset=$this->input('offset')/60;
 
+        if($offset<0)
+        $now=\Carbon\Carbon::now()->subHours($offset);
+        else
+          $now=\Carbon\Carbon::now()->addHours($offset);
+
+       if($this->input('expirationDate')>\Carbon\Carbon::now())
+       {
+         return [
+           'amount'          => "required|numeric|max: $price",
+           'product_id'      => "required|unique:bids,product_id,". $this->input('product_id'),
+           'reservedPrice'   => "required|numeric|min: ".$this->input('amount'),
+           'expirationDate'  => "required|after:". \Carbon\Carbon::now()->subDay(),
+           'expirationTime'        => 'required|date_format:H:i'
+         ];
+
+       } else
         return [
-          'expirationDate'        => "required|after:". \Carbon\Carbon::now()->subDay(),
-        'expirationTime'        => 'required|date_format:H:i|after:'.\Carbon\Carbon::now()->toTimeString(),
-          'amount'         => "required|numeric|max: $price",
-        'product_id' => "required|unique:bids,product_id,". $this->get('product_id'),
-        'reservedPrice' => "required|numeric|min: ".$this->get('amount'),
+          'amount'          => "required|numeric|max: $price",
+          'product_id'      => "required|unique:bids,product_id,". $this->input('product_id'),
+          'reservedPrice'   => "required|numeric|min: ".$this->input('amount'),
+          'expirationDate'  => "required|after:". \Carbon\Carbon::now()->subDay(),
+          'expirationTime'        => 'required|date_format:H:i|after:'.$now
         ];
 	}
 
