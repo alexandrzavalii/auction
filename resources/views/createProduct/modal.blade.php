@@ -75,8 +75,8 @@
             {!! Form::hidden('max', 'sad') !!}
             {!! Form::hidden('offset', 'offset') !!}
 
-          {{  \Carbon\Carbon::now()->toTimeString()}}
-<div class="form-group">
+
+    <div class="form-group">
 			 {!! Form::label('expirationDate', 'Expiration') !!}
 				{!! Form::date('expirationDate',\Carbon\Carbon::now(), array('required', 'class'=>'form-control')) !!}
 		</div>
