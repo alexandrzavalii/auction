@@ -115,7 +115,7 @@
                           </div>
                        </td>
                         <td class="col-sm-3 col-md-3 text-center"><strong>${{ $bid->amount }}</strong></td>
-                        <td class="col-sm-3 col-md-3 text-center"><div data-countdown="{{strtotime($bid->expiration)}}"></div></td>
+                        <td class="col-sm-3 col-md-3 text-center"><div data-bid="{{$bid}}" data-countdown="{{strtotime($bid->expiration)}}"></div></td>
                       </tr>
                     @endforeach
                 </tbody>

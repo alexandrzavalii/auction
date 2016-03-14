@@ -13,6 +13,7 @@
            <link rel="shortcut icon" href="/imgs/favicon.ico">
  </head>
  <body>
+
     @yield('content')
     <footer>
          @include('inc.nav')
@@ -25,6 +26,13 @@
    <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
    @include('inc.navjs') <!--navigation footer -->
    <script>
+
+ document.cookie = 'name=David' ;
+
+
+
+
+
       @yield('js')
    </script>
  </body>

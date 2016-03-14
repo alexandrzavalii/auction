@@ -18,7 +18,7 @@ Route::get('products/buy/{id}',['uses'=> 'ProductController@buy']);
 
 Route::post('products/bid', ['as' => 'products.bid', 'uses' => 'BidController@bid']);
 Route::post('products/storeBid', ['as' => 'products.storeBid', 'uses' => 'BidController@storeBid']);
-
+Route::post('bid_check/{bid}', 'BidController@check');
 Route::resource('products', 'ProductController');
 Route::post('user/saveCard', ['as' => 'user.saveCard', 'uses' => 'UserController@saveCard']);
 Route::resource('user','UserController');

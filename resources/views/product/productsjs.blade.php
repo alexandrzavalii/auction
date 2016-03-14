@@ -12,7 +12,7 @@ $('#storeBid').on('show.bs.modal', function (event) {
   var button = $(event.relatedTarget)
   var product = button.data('product')
   var modal = $(this)
-  modal.find('.modal-title').text('Create bid for ' + product["name"]+ 'offset '+ offset)
+  modal.find('.modal-title').text('Create bid for ' + product["name"])
    modal.find(".modal-body input[name='offset'] ").val(offset)
    modal.find(".modal-body input[name='product_id'] ").val(product["id"])
   modal.find(".modal-body input[name='max'] ").val(product["price"])

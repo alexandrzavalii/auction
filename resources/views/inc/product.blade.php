@@ -9,26 +9,26 @@
             <p>
 
              @if($product->bid)
-
-                                <h4><div class="countdown" data-countdown="{{strtotime($product->bid->expiration)}}"></div></h4>
+               <h4><div class="countdown" data-bid="{{$product->bid}}" data-countdown="{{strtotime($product->bid->expiration)}}"></div></h4>
 
                {!! Form::open(array('route' => array('products.bid', $product->id), 'id'=>'createBid', 'class' => 'form', 'novalidate' => 'novalidate')) !!}
-                {!! Form::hidden('timeLeft', date("H:i:s",strtotime($product->bid->expiration)-strtotime(Carbon\Carbon::now()))) !!}
-                <div class="row">
-							<div class="col-md-4 col-xs-4">
-							   <h4>  {!! Form::label('$'. $product->bid->amount) !!}</h4>
-							</div>
-							<div class="col-md-8 col-xs-8">
-                                   @if(Auth::user()->id ==$product->bid->user_id)
-                                   <h4 class="text-success">You are winning!</h4>
-                                   @elseif($product->authorId == Auth::user()->id)
-                                   <h4 class="text-warning">Reserved:${{$product->bid->reservedPrice}}</h4>
-                                   @else
-                                     <a href="#"  class="btn btn-warning btn-block  " data-product="{{$product}}" data-toggle="modal" data-target="#bid"  >Bid</a>
-                                   @endif
 
-							</div>
-						</div>
+                <div class="row">
+            							<div class="col-md-4 col-xs-4">
+            							   <h4>  {!! Form::label('$'. $product->bid->amount) !!}</h4>
+            							</div>
+
+            							<div class="col-md-8 col-xs-8">
+                                               @if(Auth::user()->id ==$product->bid->user_id)
+                                               <h4 class="text-success">You are winning!</h4>
+                                               @elseif($product->authorId == Auth::user()->id)
+                                               <h4 class="text-warning">Reserved:${{$product->bid->reservedPrice}}</h4>
+                                               @else
+                                                 <a href="#"  class="btn btn-warning btn-block  " data-product="{{$product}}" data-toggle="modal" data-target="#bid"  >Bid</a>
+                                               @endif
+
+            							</div>
+						      </div>
                   {!! Form::close() !!}
             <br>
              @endif
@@ -64,7 +64,7 @@
                             class="btn btn-default">Add to Cart
                           </button>
                           {!! Form::close() !!}
-                            </div>
+                      </div>
                   @endif
                 </div>
           </div>

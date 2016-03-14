@@ -2,27 +2,29 @@
 
 namespace App\Http\Controllers;
   use App\Product;
+  use App\Bids;
   use File;
+  use Cookie;
+  use Session;
   use Illuminate\Http\Request;
   use App\Http\Requests\ProductCreateRequest;
   use Illuminate\Support\Facades\Auth;
-  
+
   class ProductController extends Controller
   {
       public function __construct()
       {
           $this->middleware('auth');
+
       }
 
       public function index(Request $request)
       {
           //search query
-
            if ($request->get('query'))
            {
              $this->validate($request, [
                'query' => 'required',]);
-
                $search = $request->get('query');
                $products = Product::orderBy('name', 'asc')->where('name', 'LIKE', '%'.$search.'%')->get();
                return view('product.index', compact('products'));

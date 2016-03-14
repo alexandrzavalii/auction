@@ -3,7 +3,6 @@
 @section('content')
   @include('inc.header')
 
-
 <div class="container">
       @include('createProduct.modal')
   @if (count($errors) > 0)
@@ -40,7 +39,6 @@
 </div>
 @include('inc.footer')
 @endsection
-
 
 @section('js')
    @include('partialsjs.counterjs')
